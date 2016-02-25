@@ -1,0 +1,20 @@
+{
+    "name": "limenius/form-json-schema-transformer",
+    "description": "Transform Symfony Forms into Json Schema",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nacho",
+            "email": "nacho@limenius.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Limenius\\FormJsonSchemaTransformer": "src/"
+        }
+    },
+    "require": {
+        "symfony/form": "~2.3|~3.0"
+    }
+}
