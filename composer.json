@@ -1,17 +1,17 @@
 {
-    "name": "limenius/form-json-schema-transformer",
+    "name": "limenius/liform",
     "description": "Transform Symfony Forms into Json Schema",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "nacho",
+            "name": "Nacho Martín",
             "email": "nacho@limenius.com"
         }
     ],
     "autoload": {
         "psr-0": {
-            "Limenius\\FormJsonSchemaTransformer": "src/"
+            "Limenius\\Liform": "src/"
         }
     },
     "require": {

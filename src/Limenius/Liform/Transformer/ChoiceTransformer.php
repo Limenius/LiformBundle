@@ -1,6 +1,6 @@
 <?php
 
-namespace Limenius\FormJsonSchemaTransformer\Transformer;
+namespace Limenius\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 

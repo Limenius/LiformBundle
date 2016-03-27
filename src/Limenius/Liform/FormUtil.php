@@ -1,6 +1,6 @@
 <?php
 
-namespace Limenius\FormJsonSchemaTransformer;
+namespace Limenius\Liform;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\ResolvedFormTypeInterface;

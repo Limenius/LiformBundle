@@ -1,8 +1,8 @@
 <?php
 
-namespace Limenius\FormJsonSchemaTransformer;
+namespace Limenius\Liform;
 use Symfony\Component\Form\FormInterface;
-use Limenius\FormJsonSchemaTransformer\Transformer\CompoundTransformer;
+use Limenius\Liform\Transformer\CompoundTransformer;
 
 class Resolver
 {

@@ -1,15 +1,14 @@
 <?php
 
-namespace Limenius\FormJsonSchemaTransformer\Transformer;
+namespace Limenius\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 
-class NumberTransformer
+class BooleanTransformer
 {
     public function transform(FormInterface $form)
     {
         return [
-            'type' => 'number'
+            'type' => 'boolean'
         ];
-
     }
 }
