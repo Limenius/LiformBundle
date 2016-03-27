@@ -2,6 +2,7 @@
 
 namespace Limenius\FormJsonSchemaTransformer\Transformer;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 
 class ChoiceTransformer
 {
@@ -11,7 +12,13 @@ class ChoiceTransformer
 
         $choices = [];
         foreach ($formView->vars['choices'] as $choiceView) {
-            $choices[] = $choiceView->value;
+            if ($choiceView instanceof ChoiceGroupView) {
+                foreach ($choiceView->choices as $choiceItem) {
+                    $choices[] = $choiceItem->value;
+                }
+            } else {
+                $choices[] = $choiceView->value;
+            }
         }
         return [
             'enum' => $choices
