@@ -8,8 +8,7 @@ class StringTransformer
     public function transform(FormInterface $form)
     {
         return [
-            'type' => 'string'
+            'type' => 'string',
         ];
-
     }
 }

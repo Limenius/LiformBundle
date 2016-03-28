@@ -21,7 +21,8 @@ class ChoiceTransformer
             }
         }
         return [
-            'enum' => $choices
+            'enum' => $choices,
+            'type' => 'string'
             ];
 
     }

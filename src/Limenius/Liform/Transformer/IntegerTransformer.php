@@ -8,7 +8,7 @@ class IntegerTransformer
     public function transform(FormInterface $form)
     {
         return [
-            'type' => 'integer'
+            'type' => 'integer',
         ];
 
     }

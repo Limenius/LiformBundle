@@ -1,7 +1,8 @@
 <?php
 
-namespace Limenius\FormJsonSchemaTransformer\Tests;
-use Limenius\FormJsonSchemaTransformer\Resolver;
+namespace Limenius\Liform\Tests;
+
+use Limenius\Liform\Resolver;
 
 class ResolverTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,4 +13,3 @@ class ResolverTest extends \PHPUnit_Framework_TestCase
     }
 
 }
-
