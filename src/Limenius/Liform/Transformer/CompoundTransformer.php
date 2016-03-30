@@ -12,8 +12,12 @@ class CompoundTransformer
     public function transform(FormInterface $form)
     {
         $data = [];
+        $order = 1;
         foreach ($form->all() as $name => $field) {
-            $data[$name] = $this->resolver->resolve($field)->transform($field);
+            $transformedChild = $this->resolver->resolve($field)->transform($field);
+            $transformedChild['propertyOrder'] = $order;
+            $data[$name] = $transformedChild;
+            $order ++;
         }
         return [
             'title' => $form->getConfig()->getOption('label'),

@@ -6,27 +6,28 @@ use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface; 
 use Symfony\Component\Form\Tests\AbstractFormTest;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Limenius\Liform\Transformer\CompoundTransformer;
+use Limenius\Liform\Transformer\StringTransformer;
 use Limenius\Liform\Resolver;
+use Symfony\Component\Form\Test\TypeTestCase;
 
-class CompoundTransformerTest extends AbstractFormTest
+class CompoundTransformerTest extends TypeTestCase
 {
 
     public function testOrder()
     {
+        $form = $this->factory->create(FormType::class)
+            ->add('firstName', TextType::class)
+            ->add('secondName', TextType::class);
         $resolver = new Resolver();
-        $this->form->add($this->getBuilder('firstName')->getForm());
-        $this->form->add($this->getBuilder('lastName')->getForm());
+        $resolver->addTransformer('text', new StringTransformer());
         $transformer = new CompoundTransformer($resolver);
-        $transformed = $transformer->transform($this->form);
+        $transformed = $transformer->transform($form);
         $this->assertTrue(is_array($transformed));
-    }
+        $this->assertEquals(1, $transformed['properties']['firstName']['propertyOrder']);
+        $this->assertEquals(2, $transformed['properties']['secondName']['propertyOrder']);
 
-    protected function createForm()
-    {
-        return $this->getBuilder()
-            ->setCompound(true)
-            ->setDataMapper($this->getDataMapper())
-            ->getForm();
     }
 }
