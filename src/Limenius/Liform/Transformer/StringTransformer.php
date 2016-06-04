@@ -7,8 +7,14 @@ class StringTransformer
 {
     public function transform(FormInterface $form)
     {
-        return [
+        $schema = [
             'type' => 'string',
         ];
+        if ($liform = $form->getConfig()->getOption('liform')) {
+            if ($format = $liform['format']) {
+                $schema['format'] = $format;
+            }
+        }
+        return $schema;
     }
 }

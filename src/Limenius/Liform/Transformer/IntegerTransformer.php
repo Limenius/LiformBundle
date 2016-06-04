@@ -7,9 +7,15 @@ class IntegerTransformer
 {
     public function transform(FormInterface $form)
     {
-        return [
+        $schema = [
             'type' => 'integer',
         ];
+        if ($liform = $form->getConfig()->getOption('liform')) {
+            if ($format = $liform['format']) {
+                $schema['format'] = $format;
+            }
+        }
+        return $schema;
 
     }
 }
