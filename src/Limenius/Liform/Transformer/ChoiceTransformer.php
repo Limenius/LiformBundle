@@ -4,7 +4,7 @@ namespace Limenius\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 
-class ChoiceTransformer
+class ChoiceTransformer extends AbstractTransformer
 {
     public function transform(FormInterface $form)
     {
@@ -23,11 +23,13 @@ class ChoiceTransformer
                 $titles[] = $choiceView->label;
             }
         }
-        return [
+        $sbhema = [
             'enum' => $choices,
             'options' => ['enum_titles' => $titles],
             'type' => 'string'
             ];
+        $this->getLabel($form, $schema);
 
+        return $schema;
     }
 }

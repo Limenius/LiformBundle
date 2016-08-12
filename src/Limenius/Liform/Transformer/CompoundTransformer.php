@@ -3,7 +3,7 @@
 namespace Limenius\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 
-class CompoundTransformer
+class CompoundTransformer extends AbstractTransformer
 {
     public function __construct($resolver) {
         $this->resolver = $resolver;
@@ -19,9 +19,12 @@ class CompoundTransformer
             $data[$name] = $transformedChild;
             $order ++;
         }
-        return [
+        $schema =[
             'title' => $form->getConfig()->getOption('label'),
             'properties' => $data
         ];
+        $this->getLabel($form, $schema);
+
+        return $schema;
     }
 }

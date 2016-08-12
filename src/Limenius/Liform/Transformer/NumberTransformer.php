@@ -3,7 +3,7 @@
 namespace Limenius\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 
-class NumberTransformer
+class NumberTransformer extends AbstractTransformer
 {
     public function transform(FormInterface $form)
     {
@@ -15,7 +15,8 @@ class NumberTransformer
                 $schema['format'] = $format;
             }
         }
-        return $schema;
+        $this->getLabel($form, $schema);
 
+        return $schema;
     }
 }

@@ -3,12 +3,13 @@
 namespace Limenius\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 
-class BooleanTransformer
+class BooleanTransformer extends AbstractTransformer
 {
     public function transform(FormInterface $form)
     {
-        return [
-            'type' => 'boolean'
-        ];
+        $schema = ['type' => 'boolean'];
+        $this->getLabel($form, $schema);
+
+        return $schema;
     }
 }
