@@ -13,9 +13,18 @@ use Limenius\Liform\Transformer\StringTransformer;
 use Limenius\Liform\Resolver;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Constraints as Assert;
+use Limenius\Liform\Form\Extension\AddLiformExtension;
+use Symfony\Component\Form\FormTypeExtensionInterface;
 
 class StringTransformerTest extends TypeTestCase
 {
+    //protected function getExtensions()
+    //{
+    //    $ext = new AddLiformExtension();
+    //    return array_merge(parent::getExtensions(), array(
+    //        new AddLiformExtension(),
+    //    ));
+    //}
 
     public function testPattern()
     {
@@ -51,4 +60,22 @@ class StringTransformerTest extends TypeTestCase
         $this->assertTrue(is_array($transformed['required']));
         $this->assertContains('firstName', $transformed['required']);
     }
+
+    // TODO: Uncoment this and solve the problem of extension not being recognized
+    //public function testDescription()
+    //{
+    //    $form = $this->factory->create(FormType::class)
+    //        ->add(
+    //            'firstName',
+    //            TextType::class,
+    //            ['liform' => ['description' => 'A word that references you in the hash of the world']]
+    //        );
+    //    $resolver = new Resolver();
+    //    $resolver->addTransformer('text', new StringTransformer());
+    //    $transformer = new CompoundTransformer($resolver);
+    //    $transformed = $transformer->transform($form);
+
+    //    $this->assertTrue(is_array($transformed));
+    //    $this->assertArrayHasKey('description', $transformed['properties']['firstName']);
+    //}
 }

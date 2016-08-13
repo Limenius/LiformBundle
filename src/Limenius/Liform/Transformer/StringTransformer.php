@@ -12,7 +12,7 @@ class StringTransformer extends AbstractTransformer
         ];
 
         if ($liform = $form->getConfig()->getOption('liform')) {
-            if ($format = $liform['format']) {
+            if (isset($liform['format']) && $format = $liform['format']) {
                 $schema['format'] = $format;
             }
         }

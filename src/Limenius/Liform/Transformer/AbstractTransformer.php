@@ -11,6 +11,7 @@ class AbstractTransformer
         $this->addAttr($form, $schema);
         $this->addPattern($form, $schema);
         $this->addDefault($form, $schema);
+        $this->addDescription($form, $schema);
     }
 
 
@@ -42,6 +43,14 @@ class AbstractTransformer
     protected function addAttr($form, &$schema) {
         if ($attr = $form->getConfig()->getOption('attr')) {
             $schema['attr'] = $attr;
+        }
+    }
+
+    protected function addDescription($form, &$schema) {
+        if ($liform = $form->getConfig()->getOption('liform')) {
+            if (isset($liform['description']) && $description = $liform['description']) {
+                $schema['description'] = $description;
+            }
         }
     }
 
