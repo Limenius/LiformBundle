@@ -4,7 +4,7 @@ namespace Limenius\Liform\Tests\Transformer;
 
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface; 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Tests\AbstractFormTest;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -28,6 +28,5 @@ class CompoundTransformerTest extends TypeTestCase
         $this->assertTrue(is_array($transformed));
         $this->assertEquals(1, $transformed['properties']['firstName']['propertyOrder']);
         $this->assertEquals(2, $transformed['properties']['secondName']['propertyOrder']);
-
     }
 }
