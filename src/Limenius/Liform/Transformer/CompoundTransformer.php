@@ -13,17 +13,27 @@ class CompoundTransformer extends AbstractTransformer
     {
         $data = [];
         $order = 1;
+        $required = [];
         foreach ($form->all() as $name => $field) {
             $transformedChild = $this->resolver->resolve($field)->transform($field);
             $transformedChild['propertyOrder'] = $order;
             $data[$name] = $transformedChild;
             $order ++;
+
+            if ($this->resolver->resolve($field)->isRequired($field)) {
+                $required[] = $field->getName();
+            }
         }
         $schema =[
             'title' => $form->getConfig()->getOption('label'),
             'properties' => $data
         ];
-        $this->getLabel($form, $schema);
+
+        if (!empty($required)) {
+            $schema['required'] = $required;
+        }
+        $this->addLabel($form, $schema);
+        $this->addAttr($form, $schema);
 
         return $schema;
     }

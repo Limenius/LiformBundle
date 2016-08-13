@@ -10,12 +10,13 @@ class StringTransformer extends AbstractTransformer
         $schema = [
             'type' => 'string',
         ];
+
         if ($liform = $form->getConfig()->getOption('liform')) {
             if ($format = $liform['format']) {
                 $schema['format'] = $format;
             }
         }
-        $this->getLabel($form, $schema);
+        $this->addCommonSpecs($form, $schema);
 
         return $schema;
     }

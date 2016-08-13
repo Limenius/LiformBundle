@@ -8,7 +8,7 @@ class BooleanTransformer extends AbstractTransformer
     public function transform(FormInterface $form)
     {
         $schema = ['type' => 'boolean'];
-        $this->getLabel($form, $schema);
+        $this->addCommonSpecs($form, $schema);
 
         return $schema;
     }

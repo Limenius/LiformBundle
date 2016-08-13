@@ -5,9 +5,37 @@ use Symfony\Component\Form\FormInterface;
 
 class AbstractTransformer
 {
-    protected function getLabel($form, &$schema) {
+    protected function addCommonSpecs($form, &$schema)
+    {
+        $this->addLabel($form, $schema);
+        $this->addAttr($form, $schema);
+        $this->addPattern($form, $schema);
+    }
+
+    protected function addPattern($form, &$schema)
+    {
+        if ($attr = $form->getConfig()->getOption('attr')) {
+            if (isset($attr['pattern'])) {
+                $schema['pattern'] = $attr['pattern'];
+            }
+        }
+    }
+
+    protected function addLabel($form, &$schema)
+    {
         if ($label = $form->getConfig()->getOption('label')) {
             $schema['title'] = $label;
         }
+    }
+
+    protected function addAttr($form, &$schema) {
+        if ($attr = $form->getConfig()->getOption('attr')) {
+            $schema['attr'] = $attr;
+        }
+    }
+
+    protected function isRequired($form)
+    {
+        return $form->getConfig()->getOption('required');
     }
 }

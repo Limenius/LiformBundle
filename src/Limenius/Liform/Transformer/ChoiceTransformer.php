@@ -28,7 +28,7 @@ class ChoiceTransformer extends AbstractTransformer
             'options' => ['enum_titles' => $titles],
             'type' => 'string'
             ];
-        $this->getLabel($form, $schema);
+        $this->addCommonSpecs($form, $schema);
 
         return $schema;
     }
