@@ -10,6 +10,17 @@ class AbstractTransformer
         $this->addLabel($form, $schema);
         $this->addAttr($form, $schema);
         $this->addPattern($form, $schema);
+        $this->addDefault($form, $schema);
+    }
+
+
+    protected function addDefault($form, &$schema)
+    {
+        if ($attr = $form->getConfig()->getOption('attr')) {
+            if (isset($attr['placeholder'])) {
+                $schema['default'] = $attr['placeholder'];
+            }
+        }
     }
 
     protected function addPattern($form, &$schema)
