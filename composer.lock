@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "53a848d64843e5db8ca78284dc4a03e3",
-    "content-hash": "bb60e09322c1ed3347c99ca53aeb13b1",
+    "hash": "dc50638fdace0444046435eaa197d2d6",
+    "content-hash": "2c8180a1ffc14844a373aaa01b9158a5",
     "packages": [
         {
             "name": "paragonie/random_compat",
@@ -57,7 +57,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -117,16 +117,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "60baf638fc8713cce24be17649f1dc5ed1d58170"
+                "reference": "74f15ef7555981404fdfc62b6098d886b7fcb46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/60baf638fc8713cce24be17649f1dc5ed1d58170",
-                "reference": "60baf638fc8713cce24be17649f1dc5ed1d58170",
+                "url": "https://api.github.com/repos/symfony/form/zipball/74f15ef7555981404fdfc62b6098d886b7fcb46e",
+                "reference": "74f15ef7555981404fdfc62b6098d886b7fcb46e",
                 "shasum": ""
             },
             "require": {
@@ -187,11 +187,11 @@
             ],
             "description": "Symfony Form Component",
             "homepage": "https://symfony.com",
-            "time": "2016-07-26 08:04:17"
+            "time": "2016-08-31 08:07:33"
         },
         {
             "name": "symfony/inflector",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/inflector.git",
@@ -248,16 +248,16 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
-                "reference": "8f3e7d2772173db99617a439f2104b092c51b3a1"
+                "reference": "088255590c5ffd916059f1b60abba2411c42d60a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/8f3e7d2772173db99617a439f2104b092c51b3a1",
-                "reference": "8f3e7d2772173db99617a439f2104b092c51b3a1",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/088255590c5ffd916059f1b60abba2411c42d60a",
+                "reference": "088255590c5ffd916059f1b60abba2411c42d60a",
                 "shasum": ""
             },
             "require": {
@@ -319,11 +319,11 @@
                 "l10n",
                 "localization"
             ],
-            "time": "2016-07-26 08:04:17"
+            "time": "2016-08-31 08:07:33"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -553,16 +553,16 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "v3.1.3",
+            "version": "v3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
-                "reference": "b982bfb21901b130e4f814d2835ee9759fa60f40"
+                "reference": "6d7212a9bcaacb2c46ed401d0bbaf56c975ab640"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/b982bfb21901b130e4f814d2835ee9759fa60f40",
-                "reference": "b982bfb21901b130e4f814d2835ee9759fa60f40",
+                "url": "https://api.github.com/repos/symfony/property-access/zipball/6d7212a9bcaacb2c46ed401d0bbaf56c975ab640",
+                "reference": "6d7212a9bcaacb2c46ed401d0bbaf56c975ab640",
                 "shasum": ""
             },
             "require": {
@@ -611,7 +611,7 @@
                 "property path",
                 "reflection"
             ],
-            "time": "2016-06-29 05:41:56"
+            "time": "2016-08-15 13:15:28"
         }
     ],
     "packages-dev": [],

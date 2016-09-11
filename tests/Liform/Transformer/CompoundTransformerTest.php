@@ -8,10 +8,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Tests\AbstractFormTest;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Limenius\Liform\Transformer\CompoundTransformer;
-use Limenius\Liform\Transformer\StringTransformer;
-use Limenius\Liform\Resolver;
 use Symfony\Component\Form\Test\TypeTestCase;
+
+use Limenius\LiformBundle\Liform\Transformer\CompoundTransformer;
+use Limenius\LiformBundle\Liform\Transformer\StringTransformer;
+use Limenius\LiformBundle\Liform\Resolver;
 
 class CompoundTransformerTest extends TypeTestCase
 {
