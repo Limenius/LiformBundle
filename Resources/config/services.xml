@@ -25,8 +25,37 @@
                 <argument>integer</argument>
                 <argument type="service" id="liform.transformer.integer" />
             </call>
+            <call method="addTransformer">
+                <argument>text</argument>
+                <argument type="service" id="liform.transformer.string" />
+            </call>
+            <call method="addTransformer">
+                <argument>textarea</argument>
+                <argument type="service" id="liform.transformer.string" />
+            </call>
+            <call method="addTransformer">
+                <argument>money</argument>
+                <argument type="service" id="liform.transformer.number" />
+            </call>
+            <call method="addTransformer">
+                <argument>number</argument>
+                <argument type="service" id="liform.transformer.number" />
+            </call>
+            <call method="addTransformer">
+                <argument>choice</argument>
+                <argument type="service" id="liform.transformer.choice" />
+            </call>
+            <call method="addTransformer">
+                <argument>percent</argument>
+                <argument type="service" id="liform.transformer.number" />
+            </call>
+            <call method="addTransformer">
+                <argument>checkbox</argument>
+                <argument type="service" id="liform.transformer.boolean" />
+            </call>
         </service>
         <service id="liform" class="Limenius\LiformBundle\Liform\Liform">
+            <argument type="service" id="liform.resolver" />
         </service>
     </services>
 </container>
