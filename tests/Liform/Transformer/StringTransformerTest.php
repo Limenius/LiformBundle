@@ -1,6 +1,6 @@
 <?php
 
-namespace Limenius\Liform\Tests\Transformer;
+namespace Limenius\LiformBunlde\Tests\Liform\Transformer;
 
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -8,13 +8,14 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Tests\AbstractFormTest;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Limenius\Liform\Transformer\CompoundTransformer;
-use Limenius\Liform\Transformer\StringTransformer;
-use Limenius\Liform\Resolver;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Constraints as Assert;
-use Limenius\Liform\Form\Extension\AddLiformExtension;
 use Symfony\Component\Form\FormTypeExtensionInterface;
+
+use Limenius\LiformBundle\Liform\Form\Extension\AddLiformExtension;
+use Limenius\LiformBundle\Liform\Transformer\CompoundTransformer;
+use Limenius\LiformBundle\Liform\Transformer\StringTransformer;
+use Limenius\LiformBundle\Liform\Resolver;
 
 class StringTransformerTest extends TypeTestCase
 {

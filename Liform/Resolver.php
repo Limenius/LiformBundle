@@ -1,8 +1,8 @@
 <?php
 
-namespace Limenius\Liform;
+namespace Limenius\LiformBundle\Liform;
 use Symfony\Component\Form\FormInterface;
-use Limenius\Liform\Transformer\CompoundTransformer;
+use Limenius\LiformBundle\Liform\Transformer\CompoundTransformer;
 
 class Resolver
 {
@@ -23,7 +23,7 @@ class Resolver
             }
         }
 
-        // Perhaps compound we don't have a specific transformer for
+        // Perhaps a compound we don't have a specific transformer for
         if (FormUtil::isCompound($form)) {
             return new CompoundTransformer($this);
         }

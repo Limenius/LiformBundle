@@ -1,6 +1,6 @@
 <?php
 
-namespace Limenius\Liform\Tests\Transformer;
+namespace Limenius\LiformBundle\Tests\Liform\Transformer;
 
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;

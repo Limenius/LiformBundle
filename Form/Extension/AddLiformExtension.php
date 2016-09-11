@@ -1,5 +1,5 @@
 <?php
-namespace Limenius\Liform\Form\Extension;
+namespace Limenius\LiformBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormView;

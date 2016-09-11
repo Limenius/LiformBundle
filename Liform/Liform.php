@@ -1,6 +1,6 @@
 <?php
 
-namespace Limenius\Liform;
+namespace Limenius\LiformBundle\Liform;
 use Symfony\Component\Form\FormInterface;
 use Limenius\Liform\Transformer\CompoundTransformer;
 

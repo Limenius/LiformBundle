@@ -1,6 +1,6 @@
 <?php
 
-namespace Limenius\Liform\Transformer;
+namespace Limenius\LiformBundle\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 
 class StringTransformer extends AbstractTransformer

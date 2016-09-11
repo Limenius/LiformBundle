@@ -1,5 +1,5 @@
 {
-    "name": "limenius/liform",
+    "name": "limenius/liform-bundle",
     "description": "Transform Symfony Forms into Json Schema",
     "type": "library",
     "license": "MIT",
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Limenius\\Liform": "src/"
+            "Limenius\\LiformBundle": ""
         }
     },
     "require": {

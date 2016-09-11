@@ -1,8 +1,8 @@
 <?php
 
-namespace Limenius\Liform\Tests;
+namespace Limenius\LiformBundle\Tests\Liform;
 
-use Limenius\Liform\Resolver;
+use Limenius\LiformBundle\Liform\Resolver;
 
 class ResolverTest extends \PHPUnit_Framework_TestCase
 {
