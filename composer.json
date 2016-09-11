@@ -10,7 +10,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Limenius\\LiformBundle": "" }
+        "psr-4": { "Limenius\\LiformBundle\\": "" }
     },
     "require": {
         "symfony/form": "~2.3|~3.0"
