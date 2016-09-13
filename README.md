@@ -7,7 +7,7 @@ It is very annoying to maintain Symfony forms that match forms in a client techn
 
 LiformBundle generates a JSON schema representation, that serves as documentation and can be used to validate your data, and, perhaps more interestingly, to generate forms.
 
-# Installation
+## Installation
 
 
 First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you. Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Being this bundle a frontend-oriented bundle, you are expected to have a compatible frontend setup.
@@ -48,7 +48,7 @@ class AppKernel extends Kernel
 }
 ```
 
-# Usage
+## Usage
 
 Serializing a form into JSON Schema:
 
@@ -58,13 +58,12 @@ Serializing a form into JSON Schema:
 ```
 
 
-# License
+## License
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
     LICENSE.md
 
-Acknoledgements
-===============
+## Acknoledgements
 
 The technique for transforming forms using resolvers and reducers is inspired on [Symfony Console Form](https://github.com/matthiasnoback/symfony-console-form)
