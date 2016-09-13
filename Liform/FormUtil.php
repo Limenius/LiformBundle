@@ -43,7 +43,6 @@ class FormUtil
 
     public static function isCompound(FormInterface $form)
     {
-//        print_r($form->getConfig());
         return $form->getConfig()->getOption('compound');
     }
 }

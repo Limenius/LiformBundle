@@ -11,8 +11,12 @@
         </service>
 
         <!-- Normalizes FormInterface when using the symfony serializer -->
-        <service id="fos_rest.serializer.form_error_normalizer" class="Limenius\LiformBundle\Serializer\Normalizer\FormErrorNormalizer" public="false">
+        <service id="liform.serializer.form_error_normalizer" class="Limenius\LiformBundle\Serializer\Normalizer\FormErrorNormalizer" public="false">
             <argument type="service" id="translator" />
+            <tag name="serializer.normalizer" priority="-10" />
+        </service>
+
+        <service id="liform.serializer.form_normalizer" class="Limenius\LiformBundle\Serializer\Normalizer\FormViewNormalizer" public="false">
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
@@ -53,10 +57,13 @@
                 <argument>checkbox</argument>
                 <argument type="service" id="liform.transformer.boolean" />
             </call>
+            <call method="addTransformer">
+                <argument>collection</argument>
+                <argument type="service" id="liform.transformer.array" />
+            </call>
         </service>
         <service id="liform" class="Limenius\LiformBundle\Liform\Liform">
             <argument type="service" id="liform.resolver" />
         </service>
     </services>
 </container>
-

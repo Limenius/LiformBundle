@@ -7,6 +7,9 @@
         <service id="liform.transformer.compound" class="Limenius\LiformBundle\Liform\Transformer\CompoundTransformer" >
             <argument type="service" id="liform.resolver" />
         </service>
+        <service id="liform.transformer.array" class="Limenius\LiformBundle\Liform\Transformer\ArrayTransformer" >
+            <argument type="service" id="liform.resolver" />
+        </service>
         <service id="liform.transformer.integer" class="Limenius\LiformBundle\Liform\Transformer\IntegerTransformer" />
         <service id="liform.transformer.choice" class="Limenius\LiformBundle\Liform\Transformer\ChoiceTransformer" />
         <service id="liform.transformer.string" class="Limenius\LiformBundle\Liform\Transformer\StringTransformer" />

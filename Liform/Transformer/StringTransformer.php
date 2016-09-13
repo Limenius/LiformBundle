@@ -11,6 +11,7 @@ class StringTransformer extends AbstractTransformer
             'type' => 'string',
         ];
 
+
         if ($liform = $form->getConfig()->getOption('liform')) {
             if (isset($liform['format']) && $format = $liform['format']) {
                 $schema['format'] = $format;
