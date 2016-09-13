@@ -9,8 +9,6 @@ LiformBundle generates a JSON schema representation, that serves as documentatio
 
 # Installation
 
-Installation
-------------
 
 First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you. Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Being this bundle a frontend-oriented bundle, you are expected to have a compatible frontend setup.
 
