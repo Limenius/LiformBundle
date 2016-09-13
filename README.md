@@ -57,6 +57,59 @@ Serializing a form into JSON Schema:
         $schema = json_encode($this->get('liform')->transform($form));
 ```
 
+And `$schema` will contain a JSON Schema representation such as:
+
+```js
+{  
+   "title":null,
+   "properties":{  
+      "name":{  
+         "type":"string",
+         "title":"Name",
+         "propertyOrder":1
+      },
+      "color":{  
+         "type":"string",
+         "title":"Color",
+         "attr":{  
+            "placeholder":"444444"
+         },
+         "default":"444444",
+         "description":"3 hexadecimal digits",
+         "propertyOrder":2
+      },
+      "drivers":{  
+         "type":"array",
+         "title":"hola",
+         "items":{  
+            "title":"Drivers",
+            "properties":{  
+               "firstName":{  
+                  "type":"string",
+                  "propertyOrder":1
+               },
+               "familyName":{  
+                  "type":"string",
+                  "propertyOrder":2
+               }
+            },
+            "required":[  
+               "firstName",
+               "familyName"
+            ],
+            "type":"object"
+         },
+         "propertyOrder":3
+      }
+   },
+   "required":[  
+      "name",
+      "drivers"
+   ]
+}
+
+```
+
 
 ## License
 
