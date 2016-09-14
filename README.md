@@ -110,6 +110,10 @@ And `$schema` will contain a JSON Schema representation such as:
 
 ```
 
+## Status of this library
+
+At the moment can transform forms into JSON Schema (yay!), but we are in the progress of taking the maximum profint fron JSON Schema, providing configuration options, ability to override parts of the behaviour and extract more information from Symfony forms.  
+
 
 ## License
 
