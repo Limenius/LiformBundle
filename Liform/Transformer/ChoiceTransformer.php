@@ -23,9 +23,9 @@ class ChoiceTransformer extends AbstractTransformer
                 $titles[] = $choiceView->label;
             }
         }
-        $sbhema = [
+        $schema = [
             'enum' => $choices,
-            'options' => ['enum_titles' => $titles],
+            'liform' => ['enum_titles' => $titles],
             'type' => 'string'
             ];
 
