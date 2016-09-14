@@ -13,7 +13,7 @@ class ArrayTransformer extends AbstractTransformer
     {
         $entryType = $form->getConfig()->getAttribute('prototype');
         $items = $this->resolver->resolve($entryType)->transform($entryType);
-        $items['type'] = 'object';
+        $items['title'] = 0;
         $schema =[
             'type' => 'array',
             'title' => $form->getConfig()->getOption('label'),

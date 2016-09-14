@@ -26,6 +26,7 @@ class CompoundTransformer extends AbstractTransformer
         }
         $schema =[
             'title' => $form->getConfig()->getOption('label'),
+            'type' => 'object',
             'properties' => $data
         ];
 
