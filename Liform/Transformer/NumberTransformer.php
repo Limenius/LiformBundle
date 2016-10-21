@@ -5,7 +5,7 @@ use Symfony\Component\Form\FormInterface;
 
 class NumberTransformer extends AbstractTransformer
 {
-    public function transform(FormInterface $form)
+    public function transform(FormInterface $form, $extensions = [])
     {
         $schema = [
             'type' => 'number',
@@ -15,7 +15,7 @@ class NumberTransformer extends AbstractTransformer
                 $schema['format'] = $format;
             }
         }
-        $this->addCommonSpecs($form, $schema);
+        $this->addCommonSpecs($form, $schema, $extensions);
 
         return $schema;
     }

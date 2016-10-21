@@ -3,15 +3,28 @@
 namespace Limenius\LiformBundle\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
 
-class AbstractTransformer
+abstract class AbstractTransformer
 {
-    protected function addCommonSpecs($form, &$schema)
+    public abstract function transform(FormInterface $form, $extensions = []);
+
+    protected function applyExtensions($extensions, $form, $schema)
+    {
+        $newSchema = $schema;
+        foreach ($extensions as $extension) {
+            $newSchema = $extension->apply($form, $newSchema);
+        }
+        return $newSchema;
+    }
+
+    protected function addCommonSpecs($form, &$schema, $extensions = [])
     {
         $this->addLabel($form, $schema);
         $this->addAttr($form, $schema);
         $this->addPattern($form, $schema);
         $this->addDefault($form, $schema);
         $this->addDescription($form, $schema);
+        $this->addFormat($form, $schema);
+        $schema = $this->applyExtensions($extensions, $form, $schema);
     }
 
 
@@ -37,6 +50,8 @@ class AbstractTransformer
     {
         if ($label = $form->getConfig()->getOption('label')) {
             $schema['title'] = $label;
+        } else {
+            $schema['title'] = $form->getName();
         }
     }
 
@@ -50,6 +65,14 @@ class AbstractTransformer
         if ($liform = $form->getConfig()->getOption('liform')) {
             if (isset($liform['description']) && $description = $liform['description']) {
                 $schema['description'] = $description;
+            }
+        }
+    }
+
+    protected function addFormat($form, &$schema) {
+        if ($liform = $form->getConfig()->getOption('liform')) {
+            if (isset($liform['format']) && $format = $liform['format']) {
+                $schema['format'] = $format;
             }
         }
     }

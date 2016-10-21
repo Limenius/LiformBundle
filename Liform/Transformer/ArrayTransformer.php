@@ -9,10 +9,10 @@ class ArrayTransformer extends AbstractTransformer
         $this->resolver = $resolver;
     }
 
-    public function transform(FormInterface $form)
+    public function transform(FormInterface $form, $extensions = [])
     {
         $entryType = $form->getConfig()->getAttribute('prototype');
-        $items = $this->resolver->resolve($entryType)->transform($entryType);
+        $items = $this->resolver->resolve($entryType)->transform($entryType, $extensions);
         $items['title'] = 0;
         $schema =[
             'type' => 'array',
