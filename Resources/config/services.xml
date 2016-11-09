@@ -61,6 +61,10 @@
                 <argument>collection</argument>
                 <argument type="service" id="liform.transformer.array" />
             </call>
+            <call method="addTransformer">
+                <argument>time</argument>
+                <argument type="service" id="liform.transformer.string" />
+            </call>
         </service>
         <service id="liform" class="Limenius\LiformBundle\Liform\Liform">
             <argument type="service" id="liform.resolver" />

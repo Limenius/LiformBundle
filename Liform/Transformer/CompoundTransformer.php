@@ -2,6 +2,7 @@
 
 namespace Limenius\LiformBundle\Liform\Transformer;
 use Symfony\Component\Form\FormInterface;
+use Limenius\LiformBundle\Liform\FormUtil;
 
 class CompoundTransformer extends AbstractTransformer
 {
@@ -32,6 +33,11 @@ class CompoundTransformer extends AbstractTransformer
 
         if (!empty($required)) {
             $schema['required'] = $required;
+        }
+        $innerType = $form->getConfig()->getType()->getInnerType();
+
+        if(method_exists($innerType,'buildLiform')) {
+            $schema['liform'] = $innerType->buildLiform($form);
         }
         $this->addCommonSpecs($form, $schema, $extensions);
 

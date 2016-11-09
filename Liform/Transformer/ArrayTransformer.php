@@ -11,17 +11,25 @@ class ArrayTransformer extends AbstractTransformer
 
     public function transform(FormInterface $form, $extensions = [])
     {
-        $entryType = $form->getConfig()->getAttribute('prototype');
-        $items = $this->resolver->resolve($entryType)->transform($entryType, $extensions);
-        $items['title'] = 0;
+        $children = [];
+        //$entryType = $form->getConfig()->getAttribute('prototype');
+        //$children[] = $this->resolver->resolve($entryType)->transform($entryType, $extensions);
+        //$children[0]['title'] = 'prototype';
+        foreach ($form->all() as $name => $field) {
+            $transformedChild = $this->resolver->resolve($field)->transform($field, $extensions);
+            $children[] = $transformedChild;
+
+            if ($this->resolver->resolve($field)->isRequired($field)) {
+                $required[] = $field->getName();
+            }
+        }
         $schema =[
             'type' => 'array',
             'title' => $form->getConfig()->getOption('label'),
-            'items' => $items
+            'items' => $children
         ];
 
-        $this->addLabel($form, $schema);
-        $this->addAttr($form, $schema);
+        $this->addCommonSpecs($form, $schema, $extensions);
 
         return $schema;
     }
