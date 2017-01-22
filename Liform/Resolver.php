@@ -9,7 +9,7 @@ class Resolver
 {
     private $transformers = [];
 
-    public function addTransformer($formType, $transformer)
+    public function setTransformer($formType, $transformer)
     {
         $this->transformers[$formType] = $transformer;
     }
