@@ -26,7 +26,7 @@ class ArrayTransformer extends AbstractTransformer
         $schema =[
             'type' => 'array',
             'title' => $form->getConfig()->getOption('label'),
-            'items' => $children
+            'items' => $children[0]
         ];
 
         $this->addCommonSpecs($form, $schema, $extensions);

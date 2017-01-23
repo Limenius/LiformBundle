@@ -65,6 +65,10 @@
                 <argument>time</argument>
                 <argument type="service" id="liform.transformer.string" />
             </call>
+            <call method="setTransformer">
+                <argument>textarea</argument>
+                <argument type="service" id="liform.transformer.string" />
+            </call>
         </service>
         <service id="liform" class="Limenius\LiformBundle\Liform\Liform">
             <argument type="service" id="liform.resolver" />
