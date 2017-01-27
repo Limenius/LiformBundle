@@ -15,7 +15,7 @@ class IntegerTransformer extends AbstractTransformer
                 $schema['format'] = $format;
             }
         }
-        $this->addCommonSpecs($form, $schema, $extensions, $format);
+        $schema = $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

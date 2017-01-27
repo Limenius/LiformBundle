@@ -16,60 +16,66 @@ abstract class AbstractTransformer
         return $newSchema;
     }
 
-    protected function addCommonSpecs($form, &$schema, $extensions = [], $format)
+    protected function addCommonSpecs($form, $schema, $extensions = [], $format)
     {
-        $this->addLabel($form, $schema);
-        $this->addAttr($form, $schema);
-        $this->addPattern($form, $schema);
-        $this->addDefault($form, $schema);
-        $this->addDescription($form, $schema);
-        $this->addFormat($form, $schema, $format);
+        $schema = $this->addLabel($form, $schema);
+        $schema = $this->addAttr($form, $schema);
+        $schema = $this->addPattern($form, $schema);
+        $schema = $this->addDefault($form, $schema);
+        $schema = $this->addDescription($form, $schema);
+        $schema = $this->addFormat($form, $schema, $format);
         $schema = $this->applyExtensions($extensions, $form, $schema);
+        return $schema;
     }
 
 
-    protected function addDefault($form, &$schema)
+    protected function addDefault($form, $schema)
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
             if (isset($attr['placeholder'])) {
                 $schema['default'] = $attr['placeholder'];
             }
         }
+        return $schema;
     }
 
-    protected function addPattern($form, &$schema)
+    protected function addPattern($form, $schema)
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
             if (isset($attr['pattern'])) {
                 $schema['pattern'] = $attr['pattern'];
             }
         }
+        return $schema;
     }
 
-    protected function addLabel($form, &$schema)
+    protected function addLabel($form, $schema)
     {
         if ($label = $form->getConfig()->getOption('label')) {
             $schema['title'] = $label;
         } else {
             $schema['title'] = $form->getName();
         }
+        return $schema;
     }
 
-    protected function addAttr($form, &$schema) {
+    protected function addAttr($form, $schema) {
         if ($attr = $form->getConfig()->getOption('attr')) {
             $schema['attr'] = $attr;
         }
+        return $schema;
     }
 
-    protected function addDescription($form, &$schema) {
+    protected function addDescription($form, $schema) {
         if ($liform = $form->getConfig()->getOption('liform')) {
             if (isset($liform['description']) && $description = $liform['description']) {
                 $schema['description'] = $description;
             }
         }
+        return $schema;
     }
 
-    protected function addFormat($form, &$schema, $configFormat) {
+    protected function addFormat($form, $schema, $configFormat) {
         if ($liform = $form->getConfig()->getOption('liform')) {
             if (isset($liform['format']) && $format = $liform['format']) {
                 $schema['format'] = $format;
@@ -77,6 +83,7 @@ abstract class AbstractTransformer
         } elseif ($configFormat) {
             $schema['format'] = $configFormat;
         }
+        return $schema;
     }
 
     protected function isRequired($form)

@@ -30,7 +30,7 @@ class ArrayTransformer extends AbstractTransformer
             'items' => $children[0]
         ];
 
-        $this->addCommonSpecs($form, $schema, $extensions, $format);
+        $schema = $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

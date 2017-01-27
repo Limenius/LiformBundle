@@ -9,7 +9,7 @@ class BooleanTransformer extends AbstractTransformer
     {
         $schema = ['type' => 'boolean'];
 
-        $this->addCommonSpecs($form, $schema, $extensions, $format);
+        $schema = $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

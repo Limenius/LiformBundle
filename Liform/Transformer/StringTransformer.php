@@ -18,7 +18,7 @@ class StringTransformer extends AbstractTransformer
             }
         }
 
-        $this->addCommonSpecs($form, $schema, $extensions, $format);
+        $schema = $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }
