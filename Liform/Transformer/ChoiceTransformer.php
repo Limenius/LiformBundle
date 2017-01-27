@@ -23,11 +23,24 @@ class ChoiceTransformer extends AbstractTransformer
                 $titles[] = $choiceView->label;
             }
         }
-        $schema = [
-            'enum' => $choices,
-            'liform' => ['enum_titles' => $titles],
-            'type' => 'string'
+        if ($formView->vars['multiple']) {
+            $schema = [
+                'items' => [
+                    'type' => 'string',
+                    'enum' => $choices,
+                    'liform' => ['enum_titles' => $titles],
+                    'minItems' => $this->isRequired($form) ? 1 : 0,
+                ],
+                'uniqueItems' => true,
+                'type' => 'array'
             ];
+        } else {
+            $schema = [
+                'enum' => $choices,
+                'liform' => ['enum_titles' => $titles],
+                'type' => 'string'
+            ];
+        }
 
         $this->addCommonSpecs($form, $schema, $extensions);
 
