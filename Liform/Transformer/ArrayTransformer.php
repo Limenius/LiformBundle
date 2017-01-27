@@ -9,17 +9,18 @@ class ArrayTransformer extends AbstractTransformer
         $this->resolver = $resolver;
     }
 
-    public function transform(FormInterface $form, $extensions = [])
+    public function transform(FormInterface $form, $extensions = [], $format = null)
     {
         $children = [];
         //$entryType = $form->getConfig()->getAttribute('prototype');
         //$children[] = $this->resolver->resolve($entryType)->transform($entryType, $extensions);
         //$children[0]['title'] = 'prototype';
         foreach ($form->all() as $name => $field) {
-            $transformedChild = $this->resolver->resolve($field)->transform($field, $extensions);
+            $transformerData = $this->resolver->resolve($form);
+            $transformedChild = $transformerData['transformer']->transform($field, $extensions, $transformerData['format']);
             $children[] = $transformedChild;
 
-            if ($this->resolver->resolve($field)->isRequired($field)) {
+            if ($transformerData['transformer']->isRequired($field)) {
                 $required[] = $field->getName();
             }
         }
@@ -29,7 +30,7 @@ class ArrayTransformer extends AbstractTransformer
             'items' => $children[0]
         ];
 
-        $this->addCommonSpecs($form, $schema, $extensions);
+        $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

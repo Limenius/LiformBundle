@@ -6,7 +6,7 @@ use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 
 class ChoiceTransformer extends AbstractTransformer
 {
-    public function transform(FormInterface $form, $extensions = [])
+    public function transform(FormInterface $form, $extensions = [], $format = null)
     {
         $formView = $form->createView();
 
@@ -42,7 +42,7 @@ class ChoiceTransformer extends AbstractTransformer
             ];
         }
 
-        $this->addCommonSpecs($form, $schema, $extensions);
+        $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

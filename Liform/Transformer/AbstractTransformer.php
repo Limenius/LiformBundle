@@ -5,7 +5,7 @@ use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractTransformer
 {
-    public abstract function transform(FormInterface $form, $extensions = []);
+    public abstract function transform(FormInterface $form, $extensions = [], $format = null);
 
     protected function applyExtensions($extensions, $form, $schema)
     {
@@ -16,14 +16,14 @@ abstract class AbstractTransformer
         return $newSchema;
     }
 
-    protected function addCommonSpecs($form, &$schema, $extensions = [])
+    protected function addCommonSpecs($form, &$schema, $extensions = [], $format)
     {
         $this->addLabel($form, $schema);
         $this->addAttr($form, $schema);
         $this->addPattern($form, $schema);
         $this->addDefault($form, $schema);
         $this->addDescription($form, $schema);
-        $this->addFormat($form, $schema);
+        $this->addFormat($form, $schema, $format);
         $schema = $this->applyExtensions($extensions, $form, $schema);
     }
 
@@ -69,11 +69,13 @@ abstract class AbstractTransformer
         }
     }
 
-    protected function addFormat($form, &$schema) {
+    protected function addFormat($form, &$schema, $configFormat) {
         if ($liform = $form->getConfig()->getOption('liform')) {
             if (isset($liform['format']) && $format = $liform['format']) {
                 $schema['format'] = $format;
             }
+        } elseif ($configFormat) {
+            $schema['format'] = $configFormat;
         }
     }
 

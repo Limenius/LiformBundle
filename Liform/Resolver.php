@@ -9,9 +9,12 @@ class Resolver
 {
     private $transformers = [];
 
-    public function setTransformer($formType, $transformer)
+    public function setTransformer($formType, $transformer, $format = null)
     {
-        $this->transformers[$formType] = $transformer;
+        $this->transformers[$formType] = [
+            'transformer' => $transformer,
+            'format' => $format,
+            ];
     }
 
     public function resolve(FormInterface $form)
@@ -26,7 +29,10 @@ class Resolver
 
         // Perhaps a compound we don't have a specific transformer for
         if (FormUtil::isCompound($form)) {
-            return new CompoundTransformer($this);
+            return [
+                'transformer' => new CompoundTransformer($this),
+                'format' => null,
+            ];
         }
 
         throw new \LogicException(

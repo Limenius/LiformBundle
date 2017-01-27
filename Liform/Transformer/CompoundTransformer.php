@@ -10,18 +10,19 @@ class CompoundTransformer extends AbstractTransformer
         $this->resolver = $resolver;
     }
 
-    public function transform(FormInterface $form, $extensions = [])
+    public function transform(FormInterface $form, $extensions = [], $format = null)
     {
         $data = [];
         $order = 1;
         $required = [];
         foreach ($form->all() as $name => $field) {
-            $transformedChild = $this->resolver->resolve($field)->transform($field, $extensions);
+            $transformerData = $this->resolver->resolve($field);
+            $transformedChild = $transformerData['transformer']->transform($field, $extensions, $transformerData['format']);
             $transformedChild['propertyOrder'] = $order;
             $data[$name] = $transformedChild;
             $order ++;
 
-            if ($this->resolver->resolve($field)->isRequired($field)) {
+            if ($transformerData['transformer']->isRequired($field)) {
                 $required[] = $field->getName();
             }
         }
@@ -39,7 +40,7 @@ class CompoundTransformer extends AbstractTransformer
         if(method_exists($innerType,'buildLiform')) {
             $schema['liform'] = $innerType->buildLiform($form);
         }
-        $this->addCommonSpecs($form, $schema, $extensions);
+        $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

@@ -5,7 +5,7 @@ use Symfony\Component\Form\FormInterface;
 
 class StringTransformer extends AbstractTransformer
 {
-    public function transform(FormInterface $form, $extensions = [])
+    public function transform(FormInterface $form, $extensions = [], $format = null)
     {
         $schema = [
             'type' => 'string',
@@ -18,7 +18,7 @@ class StringTransformer extends AbstractTransformer
             }
         }
 
-        $this->addCommonSpecs($form, $schema, $extensions);
+        $this->addCommonSpecs($form, $schema, $extensions, $format);
 
         return $schema;
     }

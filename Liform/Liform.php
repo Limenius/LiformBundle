@@ -17,7 +17,8 @@ class Liform
 
     public function transform(FormInterface $form)
     {
-        return $this->resolver->resolve($form)->transform($form, $this->extensions);
+        $transformerData = $this->resolver->resolve($form);
+        return $transformerData['transformer']->transform($form, $this->extensions, $transformerData['format']);
     }
 
     public function addExtension($extension)
