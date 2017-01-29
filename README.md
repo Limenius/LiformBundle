@@ -5,10 +5,9 @@ Bundle to serialize Symfony Forms into [JSON schema](http://json-schema.org/). F
 
 It is very annoying to maintain Symfony forms that match forms in a client technology, such as JavaScript. It is also annoying to maintain a documentation of such forms. And error prone.
 
-LiformBundle generates a JSON schema representation, that serves as documentation and can be used to validate your data, and, perhaps more interestingly, to generate forms.
+LiformBundle generates a JSON schema representation, that serves as documentation and can be used to validate your data and, if you want, to generate forms using a generator.
 
 ## Installation
-
 
 First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you. Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Being this bundle a frontend-oriented bundle, you are expected to have a compatible frontend setup.
 
@@ -110,10 +109,6 @@ And `$schema` will contain a JSON Schema representation such as:
 
 ```
 
-## Status of this library
-
-This is a work in progress. We use a subset of this concept, and we are working to extend it to a general use case. We think that it is better to publish it instead of working in the shadows until it is complete, as the concept is useful.
-At the moment can transform forms into JSON Schema (yay!), but we are in the progress of taking the maximum profint fron JSON Schema, providing configuration options, ability to override parts of the behaviour and extract more information from Symfony.
 ## License
 
 This bundle is under the MIT license. See the complete license in the bundle:
