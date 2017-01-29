@@ -1,7 +1,9 @@
 <?php
 
 namespace Limenius\LiformBundle\Liform\Transformer;
+
 use Symfony\Component\Form\FormInterface;
+use Limenius\LiformBundle\Liform\Exception\TransformerException;
 
 class ArrayTransformer extends AbstractTransformer
 {
@@ -12,11 +14,9 @@ class ArrayTransformer extends AbstractTransformer
     public function transform(FormInterface $form, $extensions = [], $format = null)
     {
         $children = [];
-        //$entryType = $form->getConfig()->getAttribute('prototype');
-        //$children[] = $this->resolver->resolve($entryType)->transform($entryType, $extensions);
-        //$children[0]['title'] = 'prototype';
+
         foreach ($form->all() as $name => $field) {
-            $transformerData = $this->resolver->resolve($form);
+            $transformerData = $this->resolver->resolve($field);
             $transformedChild = $transformerData['transformer']->transform($field, $extensions, $transformerData['format']);
             $children[] = $transformedChild;
 
@@ -24,6 +24,17 @@ class ArrayTransformer extends AbstractTransformer
                 $required[] = $field->getName();
             }
         }
+
+        if (empty($children)) {
+            $entryType = $form->getConfig()->getAttribute('prototype');
+            if (!$entryType) {
+                throw new TransformerException( 'Liform cannot infer the json-schema representation of a an empty Collection or array-like type without the option "allow_add" (to check the proptotype). Evaluating "'.$form->getName().'"');
+            }
+            $transformerData = $this->resolver->resolve($entryType);
+            $children[] = $transformerData['transformer']->transform($entryType, $extensions, $transformerData['format']);
+            $children[0]['title'] = 'prototype';
+        }
+
         $schema =[
             'type' => 'array',
             'title' => $form->getConfig()->getOption('label'),

@@ -4,6 +4,7 @@ namespace Limenius\LiformBundle\Liform;
 
 use Symfony\Component\Form\FormInterface;
 use Limenius\LiformBundle\Liform\Transformer\CompoundTransformer;
+use Limenius\LiformBundle\Liform\Exception\TransformerException;
 
 class Resolver
 {
@@ -35,7 +36,7 @@ class Resolver
             ];
         }
 
-        throw new \LogicException(
+        throw new TransformerException(
             sprintf(
                 'Could not find a transformer for any of these types (%s)',
                 implode(', ', $types)
