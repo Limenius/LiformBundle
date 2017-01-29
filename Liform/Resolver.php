@@ -3,7 +3,7 @@
 namespace Limenius\LiformBundle\Liform;
 
 use Symfony\Component\Form\FormInterface;
-use Limenius\LiformBundle\Liform\Transformer\CompoundTransformer;
+use Limenius\LiformBundle\Liform\Transformer;
 use Limenius\LiformBundle\Liform\Exception\TransformerException;
 
 class Resolver
@@ -31,7 +31,7 @@ class Resolver
         // Perhaps a compound we don't have a specific transformer for
         if (FormUtil::isCompound($form)) {
             return [
-                'transformer' => new CompoundTransformer($this),
+                'transformer' => new Transformer\CompoundTransformer($this),
                 'format' => null,
             ];
         }
@@ -42,6 +42,39 @@ class Resolver
                 implode(', ', $types)
             )
         );
+    }
+
+    /**
+     * Set a sensible choice of default transformers to reduce boilerplate
+     * when using this library
+     *
+     */
+    public function setDefaultTransformers()
+    {
+        $compoundTransformer = new Transformer\CompoundTransformer($this);
+        $arrayTransformer = new Transformer\ArrayTransformer($this);
+        $integerTransformer = new Transformer\IntegerTransformer();
+        $choiceTransformer = new Transformer\ChoiceTransformer();
+        $stringTransformer = new Transformer\StringTransformer();
+        $numberTransformer = new Transformer\NumberTransformer();
+        $booleanTransformer = new Transformer\BooleanTransformer();
+
+        $this->setTransformer('compound', $compoundTransformer);
+        $this->setTransformer('integer', $integerTransformer);
+        $this->setTransformer('text', $stringTransformer);
+        $this->setTransformer('textarea', $stringTransformer, 'textarea');
+        $this->setTransformer('password', $stringTransformer, 'password');
+        $this->setTransformer('money', $stringTransformer, 'money');
+        $this->setTransformer('number', $numberTransformer);
+        $this->setTransformer('choice', $choiceTransformer);
+        $this->setTransformer('search', $stringTransformer, 'search');
+        $this->setTransformer('url', $stringTransformer, 'url');
+        $this->setTransformer('checkbox', $booleanTransformer);
+        $this->setTransformer('collection', $arrayTransformer);
+        $this->setTransformer('money', $stringTransformer, 'money');
+        $this->setTransformer('time', $stringTransformer);
+        $this->setTransformer('percent', $stringTransformer, 'percent');
+        $this->setTransformer('email', $stringTransformer, 'email');
     }
 
 }

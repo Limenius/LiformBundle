@@ -21,77 +21,7 @@
         </service>
 
         <service id="liform.resolver" class="Limenius\LiformBundle\Liform\Resolver">
-            <call method="setTransformer">
-                <argument>compound</argument>
-                <argument type="service" id="liform.transformer.compound" />
-            </call>
-            <call method="setTransformer">
-                <argument>integer</argument>
-                <argument type="service" id="liform.transformer.integer" />
-            </call>
-            <call method="setTransformer">
-                <argument>text</argument>
-                <argument type="service" id="liform.transformer.string" />
-            </call>
-            <call method="setTransformer">
-                <argument>textarea</argument>
-                <argument type="service" id="liform.transformer.string" />
-            </call>
-            <call method="setTransformer">
-                <argument>password</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>password</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>money</argument>
-                <argument type="service" id="liform.transformer.number" />
-                <argument>money</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>number</argument>
-                <argument type="service" id="liform.transformer.number" />
-            </call>
-            <call method="setTransformer">
-                <argument>choice</argument>
-                <argument type="service" id="liform.transformer.choice" />
-            </call>
-            <call method="setTransformer">
-                <argument>percent</argument>
-                <argument type="service" id="liform.transformer.number" />
-                <argument>percent</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>search</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>search</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>url</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>url</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>checkbox</argument>
-                <argument type="service" id="liform.transformer.boolean" />
-            </call>
-            <call method="setTransformer">
-                <argument>collection</argument>
-                <argument type="service" id="liform.transformer.array" />
-            </call>
-            <call method="setTransformer">
-                <argument>time</argument>
-                <argument type="service" id="liform.transformer.string" />
-            </call>
-            <call method="setTransformer">
-                <argument>textarea</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>textarea</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>email</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>email</argument>
-            </call>
+            <call method="setDefaultTransformers"/>
         </service>
         <service id="liform" class="Limenius\LiformBundle\Liform\Liform">
             <argument type="service" id="liform.resolver" />
