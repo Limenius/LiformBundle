@@ -5,25 +5,25 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="liform.add_schema_extension"
-            class="Limenius\LiformBundle\Form\Extension\AddLiformExtension"
+            class="Limenius\Liform\Form\Extension\AddLiformExtension"
             >
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
         <!-- Normalizes FormInterface when using the symfony serializer -->
-        <service id="liform.serializer.form_error_normalizer" class="Limenius\LiformBundle\Serializer\Normalizer\FormErrorNormalizer" public="false">
+        <service id="liform.serializer.form_error_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer" public="false">
             <argument type="service" id="translator" />
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
-        <service id="liform.serializer.form_normalizer" class="Limenius\LiformBundle\Serializer\Normalizer\FormViewNormalizer" public="false">
+        <service id="liform.serializer.form_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormViewNormalizer" public="false">
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
-        <service id="liform.resolver" class="Limenius\LiformBundle\Liform\Resolver">
+        <service id="liform.resolver" class="Limenius\Liform\Resolver">
             <call method="setDefaultTransformers"/>
         </service>
-        <service id="liform" class="Limenius\LiformBundle\Liform\Liform">
+        <service id="liform" class="Limenius\Liform\Liform">
             <argument type="service" id="liform.resolver" />
         </service>
     </services>
