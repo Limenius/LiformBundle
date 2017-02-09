@@ -4,17 +4,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="liform.transformer.compound" class="Limenius\LiformBundle\Liform\Transformer\CompoundTransformer" >
+        <service id="liform.transformer.compound" class="Limenius\Liform\Transformer\CompoundTransformer" >
             <argument type="service" id="liform.resolver" />
         </service>
-        <service id="liform.transformer.array" class="Limenius\LiformBundle\Liform\Transformer\ArrayTransformer" >
+        <service id="liform.transformer.array" class="Limenius\Liform\Transformer\ArrayTransformer" >
             <argument type="service" id="liform.resolver" />
         </service>
-        <service id="liform.transformer.integer" class="Limenius\LiformBundle\Liform\Transformer\IntegerTransformer" />
-        <service id="liform.transformer.choice" class="Limenius\LiformBundle\Liform\Transformer\ChoiceTransformer" />
-        <service id="liform.transformer.string" class="Limenius\LiformBundle\Liform\Transformer\StringTransformer" />
-        <service id="liform.transformer.number" class="Limenius\LiformBundle\Liform\Transformer\NumberTransformer" />
-        <service id="liform.transformer.boolean" class="Limenius\LiformBundle\Liform\Transformer\BooleanTransformer" />
+        <service id="liform.transformer.integer" class="Limenius\Liform\Transformer\IntegerTransformer" />
+        <service id="liform.transformer.choice" class="Limenius\Liform\Transformer\ChoiceTransformer" />
+        <service id="liform.transformer.string" class="Limenius\Liform\Transformer\StringTransformer" />
+        <service id="liform.transformer.number" class="Limenius\Liform\Transformer\NumberTransformer" />
+        <service id="liform.transformer.boolean" class="Limenius\Liform\Transformer\BooleanTransformer" />
     </services>
 </container>
 
