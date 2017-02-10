@@ -108,8 +108,13 @@ And `$schema` will contain a JSON Schema representation such as:
       "drivers"
    ]
 }
-
 ```
+
+## Information extracted to JSON-schema
+
+The goal of Liform is to extract as much data as possible from the form in order to have a complete representation with validation and UI hints in the schema. The options currently supported are.
+
+Check out [the Liform documentation](https://github.com/Limenius/Liform/blob/master/README.md#information-extracted-to-json-schema) for more details.
 
 ## Using your own transformers
 
