@@ -139,7 +139,7 @@ class LiformResolverPass implements CompilerPassInterface
 
 ## Serializing initial values
 
-This bundle registers a serializer to serialize a `FormView` (you can create one with `$form->createView()`) into an array of initial values. Just do in your action:
+This bundle registers a normalizer to serialize a `FormView` (you can create one with `$form->createView()`) into an array of initial values. Just do in your action:
 
 ```php
 $serializer = $this->get('serializer');
@@ -152,7 +152,7 @@ To obtain an array of initial values that match your json-schema.
 ## Serializing errors
 
 
-This bundle registers a serializer to serialize forms with errors into an array. This part was shameless taken from [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Serializer/Normalizer/FormErrorNormalizer.php). Just do in your action:
+This bundle registers a normalizer to serialize forms with errors into an array. This part was shameless taken from [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Serializer/Normalizer/FormErrorNormalizer.php). Just do in your action:
 
 ```php
 $serializer = $this->get('serializer');
