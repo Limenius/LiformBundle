@@ -133,7 +133,7 @@ $serializer = $this->get('serializer');
 $errors = $serializer->normalize($form),
 ```
 
-To obtain an array with the errors of your form. Liform-react, if you are using it, can understand this format.
+To obtain an array with the errors of your form. [liform-react](https://github.com/Limenius/liform-react), if you are using it, can understand this format.
 
 ## License
 
