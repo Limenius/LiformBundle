@@ -111,6 +111,32 @@ And `$schema` will contain a JSON Schema representation such as:
 
 ```
 
+## Using your own transformers
+
+Liform works by inspecting recursively the form, finding (resolving) the right transformer for every child and using that transformer to build the corresponding slice of the json-schema. So, if you want to modify the way a particular form type is transformed, you should set a transformer that matches a type with that `block_prefix`.
+
+To do so, you can create a CompilerPass. In this case we are reusing the StringTransformer, just making it set the widget property to `my_widget`, but you could use your very own transformer:
+
+```php
+<?php
+
+namespace AppBundle\DependencyInjection\Compiler;
+
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
+
+
+class LiformResolverPass implements CompilerPassInterface
+{
+    public function process(ContainerBuilder $container)
+    {
+        $resolver = $container->getDefinition('liform.resolver');
+        $resolver->addMethodCall('setTransformer', ['my_block_prefix', new Reference('liform.transformer.string'), 'my_widget']);
+    }
+}
+```
+
 ## Serializing initial values
 
 This bundle registers a serializer to serialize a `FormView` (you can create one with `$form->createView()`) into an array of initial values. Just do in your action:
