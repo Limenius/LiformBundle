@@ -1,7 +1,7 @@
 LiformBundle
 ============
 
-Bundle to serialize Symfony Forms into [JSON schema](http://json-schema.org/). For use with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based in json-schema.
+Bundle to serialize Symfony Forms into [JSON schema](http://json-schema.org/) that integrates the library [Liform](https://github.com/Limenius/Liform) with Symfony. For use with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based in json-schema.
 
 It is very annoying to maintain Symfony forms that match forms in a client technology, such as JavaScript. It is also annoying to maintain a documentation of such forms. And error prone.
 
@@ -9,7 +9,9 @@ LiformBundle generates a JSON schema representation, that serves as documentatio
 
 ## Installation
 
-First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you. Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Being this bundle a frontend-oriented bundle, you are expected to have a compatible frontend setup.
+First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you, which includes an example of usage of this bundle.
+
+Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Being this bundle a frontend-oriented bundle, you are expected to have a compatible frontend setup.
 
 ### Step 1: Download the Bundle
 
@@ -108,6 +110,30 @@ And `$schema` will contain a JSON Schema representation such as:
 }
 
 ```
+
+## Serializing initial values
+
+This bundle registers a serializer to serialize a `FormView` (you can create one with `$form->createView()`) into an array of initial values. Just do in your action:
+
+```php
+$serializer = $this->get('serializer');
+$initialValues = $serializer->normalize($form->createView()),
+```
+
+To obtain an array of initial values that match your json-schema.
+
+
+## Serializing errors
+
+
+This bundle registers a serializer to serialize forms with errors into an array. This part was shameless taken from [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Serializer/Normalizer/FormErrorNormalizer.php). Just do in your action:
+
+```php
+$serializer = $this->get('serializer');
+$errors = $serializer->normalize($form),
+```
+
+To obtain an array with the errors of your form. Liform-react, if you are using it, can understand this format.
 
 ## License
 
