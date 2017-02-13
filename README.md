@@ -1,9 +1,10 @@
 LiformBundle
 ============
 
-Bundle to serialize Symfony Forms into [JSON schema](http://json-schema.org/) that integrates the library [Liform](https://github.com/Limenius/Liform) with Symfony. For use with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based in json-schema.
+Bundle that integrates [Liform](https://github.com/Limenius/Liform) into Symfony. Liform is a library to serialize Symfony Forms into [JSON schema](http://json-schema.org/).
+For use with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based in json-schema.
 
-It is very annoying to maintain Symfony forms that match forms in a client technology, such as JavaScript. It is also annoying to maintain a documentation of such forms. And error prone.
+It is very annoying to maintain Symfony forms that match forms in a client technology, such as JavaScript. It is also annoying to maintain a documentation of such forms. And it's error prone, too.
 
 LiformBundle generates a JSON schema representation, that serves as documentation and can be used to validate your data and, if you want, to generate forms using a generator.
 
