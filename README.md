@@ -173,6 +173,6 @@ This bundle is under the MIT license. See the complete license in the bundle:
 
     LICENSE.md
 
-## Acknoledgements
+## Acknowledgements
 
 The technique for transforming forms using resolvers and reducers is inspired on [Symfony Console Form](https://github.com/matthiasnoback/symfony-console-form)
