@@ -22,9 +22,16 @@
 
         <service id="liform.resolver" class="Limenius\Liform\Resolver">
             <call method="setDefaultTransformers"/>
+            <call method="setTransformer">
+                <argument>text</argument>
+                <argument type="service" id="liform.transformer.string" />
+            </call>
         </service>
         <service id="liform" class="Limenius\Liform\Liform">
             <argument type="service" id="liform.resolver" />
+        </service>
+        <service id="liform.guesser.validator" class="Limenius\Liform\Guesser\ValidatorGuesser">
+            <argument type="service" id="validator.mapping.class_metadata_factory" />
         </service>
     </services>
 </container>

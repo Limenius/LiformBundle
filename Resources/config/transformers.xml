@@ -12,7 +12,9 @@
         </service>
         <service id="liform.transformer.integer" class="Limenius\Liform\Transformer\IntegerTransformer" />
         <service id="liform.transformer.choice" class="Limenius\Liform\Transformer\ChoiceTransformer" />
-        <service id="liform.transformer.string" class="Limenius\Liform\Transformer\StringTransformer" />
+        <service id="liform.transformer.string" class="Limenius\Liform\Transformer\StringTransformer" >
+            <argument type="service" id="liform.guesser.validator" />
+        </service>
         <service id="liform.transformer.number" class="Limenius\Liform\Transformer\NumberTransformer" />
         <service id="liform.transformer.boolean" class="Limenius\Liform\Transformer\BooleanTransformer" />
     </services>
