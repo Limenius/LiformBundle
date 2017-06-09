@@ -4,19 +4,43 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="liform.transformer.compound" class="Limenius\Liform\Transformer\CompoundTransformer" >
-            <argument type="service" id="liform.resolver" />
-        </service>
-        <service id="liform.transformer.array" class="Limenius\Liform\Transformer\ArrayTransformer" >
-            <argument type="service" id="liform.resolver" />
-        </service>
-        <service id="liform.transformer.integer" class="Limenius\Liform\Transformer\IntegerTransformer" />
-        <service id="liform.transformer.choice" class="Limenius\Liform\Transformer\ChoiceTransformer" />
-        <service id="liform.transformer.string" class="Limenius\Liform\Transformer\StringTransformer" >
+        <service id="Limenius\Liform\Transformer\AbstractTransformer" abstract="true">
+            <argument type="service" id="translator" />
             <argument type="service" id="liform.guesser.validator" />
         </service>
-        <service id="liform.transformer.number" class="Limenius\Liform\Transformer\NumberTransformer" />
-        <service id="liform.transformer.boolean" class="Limenius\Liform\Transformer\BooleanTransformer" />
+        <service id="liform.transformer.integer"
+            class="Limenius\Liform\Transformer\IntegerTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            />
+        <service id="liform.transformer.array"
+            class="Limenius\Liform\Transformer\ArrayTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            >
+            <argument type="service" id="liform.resolver" />
+        </service>
+        <service id="liform.transformer.compound"
+            class="Limenius\Liform\Transformer\CompoundTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            >
+            <argument type="service" id="liform.resolver" />
+        </service>
+        <service id="liform.transformer.choice"
+            class="Limenius\Liform\Transformer\ChoiceTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            />
+        <service id="liform.transformer.string"
+            class="Limenius\Liform\Transformer\StringTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            >
+        </service>
+        <service id="liform.transformer.number"
+            class="Limenius\Liform\Transformer\NumberTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            />
+        <service id="liform.transformer.boolean"
+            class="Limenius\Liform\Transformer\BooleanTransformer"
+            parent="Limenius\Liform\Transformer\AbstractTransformer"
+            />
     </services>
 </container>
 
