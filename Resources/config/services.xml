@@ -3,109 +3,39 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="liform.class">Limenius\Liform\Liform</parameter>
+        <parameter key="liform.resolver.class">Limenius\Liform\Resolver</parameter>
+        <parameter key="liform.guesser.validator.class">Limenius\Liform\Guesser\ValidatorGuesser</parameter>
+        <parameter key="liform.serializer.form_view_normalizer.class">Limenius\Liform\Serializer\Normalizer\FormViewNormalizer</parameter>
+        <parameter key="liform.serializer.form_error_normalizer.class">Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer</parameter>
+    </parameters>
+
     <services>
-        <service id="liform.add_schema_extension"
-            class="Limenius\Liform\Form\Extension\AddLiformExtension"
-            >
+        <service id="liform.add_schema_extension" class="Limenius\Liform\Form\Extension\AddLiformExtension">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
         <!-- Normalizes FormInterface when using the symfony serializer -->
-        <service id="liform.serializer.form_error_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer" public="false">
+        <service id="liform.serializer.form_error_normalizer" class="%liform.serializer.form_error_normalizer.class%" public="false">
             <argument type="service" id="translator" />
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
-        <service id="liform.serializer.form_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormViewNormalizer" public="false">
+        <service id="liform.serializer.form_view_normalizer" class="%liform.serializer.form_view_normalizer.class%" public="false">
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
-        <service id="liform.resolver" class="Limenius\Liform\Resolver">
-            <call method="setTransformer">
-                <argument>compound</argument>
-                <argument type="service" id="liform.transformer.compound" />
-            </call>
-            <call method="setTransformer">
-                <argument>text</argument>
-                <argument type="service" id="liform.transformer.string" />
-            </call>
-            <call method="setTransformer">
-                <argument>integer</argument>
-                <argument type="service" id="liform.transformer.integer" />
-            </call>
-            <call method="setTransformer">
-                <argument>textarea</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>textarea</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>password</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>password</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>money</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>money</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>number</argument>
-                <argument type="service" id="liform.transformer.number" />
-            </call>
-            <call method="setTransformer">
-                <argument>choice</argument>
-                <argument type="service" id="liform.transformer.choice" />
-            </call>
-            <call method="setTransformer">
-                <argument>search</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>search</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>url</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>url</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>checkbox</argument>
-                <argument type="service" id="liform.transformer.boolean" />
-                <argument>checkbox</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>collection</argument>
-                <argument type="service" id="liform.transformer.array" />
-            </call>
-            <call method="setTransformer">
-                <argument>time</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>time</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>percent</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>percent</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>email</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>email</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>date</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>date</argument>
-            </call>
-            <call method="setTransformer">
-                <argument>datetime</argument>
-                <argument type="service" id="liform.transformer.string" />
-                <argument>datetime</argument>
-            </call>
-        </service>
-        <service id="liform" class="Limenius\Liform\Liform">
+        <service id="liform.resolver" class="%liform.resolver.class%"/>
+
+        <service id="liform" class="%liform.class%">
             <argument type="service" id="liform.resolver" />
         </service>
-        <service id="liform.guesser.validator" class="Limenius\Liform\Guesser\ValidatorGuesser">
+
+        <service id="liform.guesser.validator" class="%liform.guesser.validator.class%">
             <argument type="service" id="validator.mapping.class_metadata_factory" />
         </service>
     </services>
+
 </container>

@@ -3,44 +3,70 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="liform.transformer.integer.class">Limenius\Liform\Transformer\IntegerTransformer</parameter>
+        <parameter key="liform.transformer.array.class">Limenius\Liform\Transformer\ArrayTransformer</parameter>
+        <parameter key="liform.transformer.compound.class">Limenius\Liform\Transformer\CompoundTransformer</parameter>
+        <parameter key="liform.transformer.choice.class">Limenius\Liform\Transformer\ChoiceTransformer</parameter>
+        <parameter key="liform.transformer.string.class">Limenius\Liform\Transformer\StringTransformer</parameter>
+        <parameter key="liform.transformer.number.class">Limenius\Liform\Transformer\NumberTransformer</parameter>
+        <parameter key="liform.transformer.boolean.class">Limenius\Liform\Transformer\BooleanTransformer</parameter>
+    </parameters>
+
     <services>
         <service id="Limenius\Liform\Transformer\AbstractTransformer" abstract="true">
             <argument type="service" id="translator" />
             <argument type="service" id="liform.guesser.validator" />
         </service>
-        <service id="liform.transformer.integer"
-            class="Limenius\Liform\Transformer\IntegerTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            />
-        <service id="liform.transformer.array"
-            class="Limenius\Liform\Transformer\ArrayTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            >
+
+        <service id="liform.transformer.integer" class="%liform.transformer.integer.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="integer"/>
+        </service>
+
+        <service id="liform.transformer.array" class="%liform.transformer.array.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
             <argument type="service" id="liform.resolver" />
+            <tag name="liform.transformer" form_type="collection"/>
         </service>
-        <service id="liform.transformer.compound"
-            class="Limenius\Liform\Transformer\CompoundTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            >
+
+        <service id="liform.transformer.compound" class="%liform.transformer.compound.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
             <argument type="service" id="liform.resolver" />
+            <tag name="liform.transformer" form_type="compound"/>
         </service>
-        <service id="liform.transformer.choice"
-            class="Limenius\Liform\Transformer\ChoiceTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            />
-        <service id="liform.transformer.string"
-            class="Limenius\Liform\Transformer\StringTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            >
+
+        <service id="liform.transformer.choice" class="%liform.transformer.choice.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="choice"/>
         </service>
-        <service id="liform.transformer.number"
-            class="Limenius\Liform\Transformer\NumberTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            />
-        <service id="liform.transformer.boolean"
-            class="Limenius\Liform\Transformer\BooleanTransformer"
-            parent="Limenius\Liform\Transformer\AbstractTransformer"
-            />
+
+        <service id="liform.transformer.string" class="%liform.transformer.string.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="text"/>
+            <tag name="liform.transformer" form_type="url" widget="url"/>
+            <tag name="liform.transformer" form_type="search" widget="search"/>
+            <tag name="liform.transformer" form_type="money" widget="money"/>
+            <tag name="liform.transformer" form_type="password" widget="password"/>
+            <tag name="liform.transformer" form_type="textarea" widget="textarea"/>
+            <tag name="liform.transformer" form_type="time" widget="time"/>
+            <tag name="liform.transformer" form_type="percent" widget="percent"/>
+            <tag name="liform.transformer" form_type="email" widget="email"/>
+            <tag name="liform.transformer" form_type="date" widget="date"/>
+            <tag name="liform.transformer" form_type="datetime" widget="datetime"/>
+        </service>
+
+        <service id="liform.transformer.number" class="%liform.transformer.number.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="number"/>
+        </service>
+
+        <service id="liform.transformer.boolean" class="%liform.transformer.boolean.class%"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="checkbox" widget="checkbox"/>
+        </service>
     </services>
+
 </container>
 
