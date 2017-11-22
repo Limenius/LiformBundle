@@ -101,7 +101,7 @@
                 <argument>datetime</argument>
             </call>
         </service>
-        <service id="liform" class="Limenius\Liform\Liform">
+        <service id="liform" class="Limenius\Liform\Liform" public="true">
             <argument type="service" id="liform.resolver" />
         </service>
         <service id="liform.guesser.validator" class="Limenius\Liform\Guesser\ValidatorGuesser">
