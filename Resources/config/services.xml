@@ -10,6 +10,10 @@
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
+        <service id="liform.collection_type_extension" class="Limenius\Liform\Form\Extension\CollectionTypeExtension">
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
+        </service>
+
         <!-- Normalizes FormInterface when using the symfony serializer -->
         <service id="liform.serializer.form_error_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer" public="false">
             <argument type="service" id="translator" />
