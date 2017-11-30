@@ -2,7 +2,7 @@ LiformBundle
 ============
 
 Bundle that integrates [Liform](https://github.com/Limenius/Liform) into Symfony. Liform is a library to serialize Symfony Forms into [JSON schema](http://json-schema.org/).
-For use with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based in json-schema.
+For use with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based on json-schema.
 
 It is very annoying to maintain Symfony forms that match forms in a client technology, such as JavaScript. It is also annoying to maintain a documentation of such forms. And it's error prone, too.
 
@@ -10,13 +10,13 @@ LiformBundle generates a JSON schema representation, that serves as documentatio
 
 ## Installation
 
-First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you, which includes an example of usage of this bundle.
+First and foremost, note that you have a complete example with React, Webpack and Symfony Standard Edition at [Limenius/symfony-react-sandbox](https://github.com/Limenius/symfony-react-sandbox) ready for you, which includes an example implementation of this bundle.
 
-Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Being this bundle a frontend-oriented bundle, you are expected to have a compatible frontend setup.
+Feel free to clone it, run it, experiment, and copy the pieces you need to your project. Because this bundle focuses mainly on the frontend side of things, you are expected to have a compatible frontend setup.
 
 ### Step 1: Download the Bundle
 
-Open a command console, enter your project directory and execute the
+Open a console, navigate to your project directory and execute the
 following command to download the latest stable version of this bundle:
 
     $ composer require limenius/liform-bundle
@@ -119,57 +119,92 @@ Check out [the Liform documentation](https://github.com/Limenius/Liform/blob/mas
 
 ## Using your own transformers
 
-Liform works by inspecting recursively the form, finding (resolving) the right transformer for every child and using that transformer to build the corresponding slice of the json-schema. So, if you want to modify the way a particular form type is transformed, you should set a transformer that matches a type with that `block_prefix`.
+Liform works by recursively inspecting the form, finding (resolving) the right transformer for every child and using that transformer to build the corresponding slice of the json-schema. So, if you want to modify the way a particular form type is transformed, you can add a transformer and configure it to to be applied for all children with a particular `block_prefix`.  
+To achieve this, you should create a new service definition and add the `liform.transformer` tag. You need to specify for which form-types your transformer will be applied by setting the `form_type` property of the tag to the corresponding `block_prefix`.
 
-To do so, you can create a CompilerPass. In this case we are reusing the StringTransformer, just making it set the widget property to `my_widget`, but you could use your very own transformer:
+In the following example we are reusing the StringTransformer class. By specifying the `widget` property of the tag we can scope the transformer to only work for types with that particular widget.  
+
+```yaml
+services:
+    app.liform.file_type.transformer:
+        class: "%liform.transformer.string.class%"
+        parent: Limenius\Liform\Transformer\AbstractTransformer
+        tags:
+            - { name: liform.transformer, form_type: file, widget: file_widget }
+```
+
+You can of course use your very own Transformer class, just make sure to implement the required `Limenius\Liform\Transformer\TransformerInterface` when you do.
+
+## Extending the default behaviour
+
+In addition to adding your own transformers for customizing the serialization of a specific form-type Liform allows you to add extensions to customize the default behaviour of all types.  
+In the following example we use an Extension to add a `submit_url` property to the schema representing the form's `action` parameter.
 
 ```php
 <?php
 
-namespace AppBundle\DependencyInjection\Compiler;
+use Limenius\Liform\Transformer\ExtensionInterface;
+use Symfony\Component\Form\FormInterface;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
-
-
-class LiformResolverPass implements CompilerPassInterface
+class FormDataExtension implements ExtensionInterface
 {
-    public function process(ContainerBuilder $container)
+    /**
+     * @param FormInterface $form
+     * @param array         $schema
+     *
+     * @return array
+     */
+    public function apply(FormInterface $form, array $schema)
     {
-        $resolver = $container->getDefinition('liform.resolver');
-        $resolver->addMethodCall('setTransformer', ['my_block_prefix', new Reference('liform.transformer.string'), 'my_widget']);
+        if (!$form->isRoot()) {
+            return $schema;
+        }
+
+        if (!$form->getConfig()->hasOption('action')) {
+            return $schema;
+        }
+
+        $schema['submit_url'] = $form->getConfig()->getOption('action');
+
+        return $schema;
     }
 }
 ```
 
+Make sure your Extension class implements the required `Limenius\Liform\Transformer\ExtensionInterface`. To register your extension; create a new service definition and add the `liform.extension` tag to it.
+
+```yaml
+services:
+    app.liform.form_data.extension:
+        class: MyProject\Application\Liform\FormDataExtension
+        tags:
+            - { name: liform.extension }
+```
+
 ## Serializing initial values
 
-This bundle registers a normalizer to serialize a `FormView` (you can create one with `$form->createView()`) into an array of initial values. Just do in your action:
+This bundle registers a normalizer to serialize a `FormView` class into an array of initial values that match your json-schema. The following example shows you how to use this feature in a controller action:
 
 ```php
 $serializer = $this->get('serializer');
 $initialValues = $serializer->normalize($form->createView()),
 ```
 
-To obtain an array of initial values that match your json-schema.
-
-
 ## Serializing errors
 
 
-This bundle registers a normalizer to serialize forms with errors into an array. This part was shameless taken from [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Serializer/Normalizer/FormErrorNormalizer.php). Just do in your action:
+This bundle registers a normalizer to serialize forms with errors into an array. This part was shamelessly taken from [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Serializer/Normalizer/FormErrorNormalizer.php). Copy the following statements to use this feature:
 
 ```php
 $serializer = $this->get('serializer');
 $errors = $serializer->normalize($form),
 ```
 
-To obtain an array with the errors of your form. [liform-react](https://github.com/Limenius/liform-react), if you are using it, can understand this format.
+The format of the array containing the normalized form errors is compatible with the [liform-react](https://github.com/Limenius/liform-react) package. 
 
 ## License
 
-This bundle is under the MIT license. See the complete license in the bundle:
+This bundle was released under the MIT license. For the full copyright and license information, please view the LICENSE file that was distributed with this source code.
 
     LICENSE.md
 
