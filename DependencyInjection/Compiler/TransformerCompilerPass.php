@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Limenius\LiformBundle package.
+ *
+ * (c) Limenius <https://github.com/Limenius/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Limenius\LiformBundle\DependencyInjection\Compiler;
 
 use Limenius\Liform\Transformer\TransformerInterface;
@@ -7,6 +16,9 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
+/**
+ * @author Nacho Martín <nacho@limenius.com>
+ */
 class TransformerCompilerPass implements CompilerPassInterface
 {
     const TRANSFORMER_TAG = 'liform.transformer';
