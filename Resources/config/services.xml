@@ -29,9 +29,10 @@
 
         <service id="liform.resolver" class="%liform.resolver.class%"/>
 
-        <service id="liform" class="%liform.class%">
+        <service id="Limenius\Liform\Liform" public="false">
             <argument type="service" id="liform.resolver" />
         </service>
+        <service id="liform" alias="Limenius\Liform\Liform"/>
 
         <service id="liform.guesser.validator" class="%liform.guesser.validator.class%">
             <argument type="service" id="validator.mapping.class_metadata_factory" />
