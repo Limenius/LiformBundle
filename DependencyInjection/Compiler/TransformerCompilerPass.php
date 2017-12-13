@@ -44,9 +44,8 @@ class TransformerCompilerPass implements CompilerPassInterface
             }
 
             $transformer = $container->getDefinition($id);
-            $class = $this->getManagedClass($transformer, $container);
 
-            if (!isset(class_implements($class)[TransformerInterface::class])) {
+            if (!isset(class_implements($transformer->getClass())[TransformerInterface::class])) {
                 throw new \InvalidArgumentException(sprintf(
                     "The service %s was tagged as a '%s' but does not implement the mandatory %s",
                     $id,
@@ -63,24 +62,5 @@ class TransformerCompilerPass implements CompilerPassInterface
 
             $resolver->addMethodCall('setTransformer', [$attributes[0]['form_type'], $transformer, $widget]);
         }
-    }
-
-    /**
-     * Resolves the class argument of the service to an actual class (in case of %parameter%).
-     *
-     * @param Definition       $service
-     * @param ContainerBuilder $container
-     *
-     * @return string
-     */
-    private function getManagedClass(Definition $service, ContainerBuilder $container)
-    {
-        $class = $service->getClass();
-
-        if (class_exists($class)) {
-            return $class;
-        }
-
-        return $container->getParameterBag()->resolveValue($class);
     }
 }
