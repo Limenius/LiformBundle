@@ -15,7 +15,7 @@
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
-        <service id="liform.serializer.form_view_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormViewNormalizer" public="false">
+        <service id="liform.serializer.initial_values_normalizer" class="Limenius\Liform\Serializer\Normalizer\InitialValuesNormalizer" public="false">
             <tag name="serializer.normalizer" priority="-10" />
         </service>
 
