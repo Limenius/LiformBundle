@@ -187,7 +187,7 @@ This bundle registers a normalizer to serialize a `FormView` class into an array
 
 ```php
 $serializer = $this->get('serializer');
-$initialValues = $serializer->normalize($form->createView()),
+$initialValues = $serializer->normalize($form),
 ```
 
 ## Serializing errors
