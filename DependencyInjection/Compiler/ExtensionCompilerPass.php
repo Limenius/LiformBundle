@@ -28,11 +28,11 @@ class ExtensionCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('liform')) {
+        if (!$container->hasDefinition('Limenius\Liform\Liform')) {
             return;
         }
 
-        $liform = $container->getDefinition('liform');
+        $liform = $container->getDefinition('Limenius\Liform\Liform');
 
         foreach ($container->findTaggedServiceIds(self::EXTENSION_TAG) as $id => $attributes) {
             $extension = $container->getDefinition($id);

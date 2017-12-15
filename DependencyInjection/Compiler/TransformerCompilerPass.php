@@ -35,14 +35,6 @@ class TransformerCompilerPass implements CompilerPassInterface
         $resolver = $container->getDefinition('liform.resolver');
 
         foreach ($container->findTaggedServiceIds(self::TRANSFORMER_TAG) as $id => $attributes) {
-            if (!isset($attributes[0]['form_type'])) {
-                throw new \InvalidArgumentException(sprintf(
-                    "The service %s was tagged as a '%s' but does not specify the mandatory 'form_type' option.",
-                    $id,
-                    self::TRANSFORMER_TAG
-                ));
-            }
-
             $transformer = $container->getDefinition($id);
 
             if (!isset(class_implements($transformer->getClass())[TransformerInterface::class])) {
@@ -54,13 +46,23 @@ class TransformerCompilerPass implements CompilerPassInterface
                 ));
             }
 
-            $widget = null;
+            foreach ($attributes as $attribute) {
+                if (!isset($attribute['form_type'])) {
+                    throw new \InvalidArgumentException(sprintf(
+                        "The service %s was tagged as a '%s' but does not specify the mandatory 'form_type' option.",
+                        $id,
+                        self::TRANSFORMER_TAG
+                    ));
+                }
 
-            if (isset($attributes[0]['widget'])) {
-                $widget = $attributes[0]['widget'];
+                $widget = null;
+
+                if (isset($attribute['widget'])) {
+                    $widget = $attribute['widget'];
+                }
+
+                $resolver->addMethodCall('setTransformer', [$attribute['form_type'], $transformer, $widget]);
             }
-
-            $resolver->addMethodCall('setTransformer', [$attributes[0]['form_type'], $transformer, $widget]);
         }
     }
 }
