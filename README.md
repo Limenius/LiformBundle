@@ -187,7 +187,7 @@ This bundle registers a normalizer to serialize a `FormView` class into an array
 
 ```php
 $serializer = $this->get('serializer');
-$initialValues = $serializer->normalize($form),
+$initialValues = $serializer->normalize($form);
 ```
 
 ## Serializing errors
@@ -197,7 +197,7 @@ This bundle registers a normalizer to serialize forms with errors into an array.
 
 ```php
 $serializer = $this->get('serializer');
-$errors = $serializer->normalize($form),
+$errors = $serializer->normalize($form);
 ```
 
 The format of the array containing the normalized form errors is compatible with the [liform-react](https://github.com/Limenius/liform-react) package. 
