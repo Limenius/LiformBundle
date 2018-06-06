@@ -42,9 +42,17 @@
             <tag name="liform.transformer" form_type="textarea" widget="textarea"/>
             <tag name="liform.transformer" form_type="time" widget="time"/>
             <tag name="liform.transformer" form_type="percent" widget="percent"/>
-            <tag name="liform.transformer" form_type="email" widget="email"/>
-            <tag name="liform.transformer" form_type="date" widget="date"/>
             <tag name="liform.transformer" form_type="datetime" widget="datetime"/>
+        </service>
+
+        <service id="liform.transformer.date" class="Limenius\Liform\Transformer\DateTransformer"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="date"/>
+        </service>
+
+        <service id="liform.transformer.email" class="Limenius\Liform\Transformer\EmailTransformer"
+                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+            <tag name="liform.transformer" form_type="email"/>
         </service>
 
         <service id="liform.transformer.number" class="Limenius\Liform\Transformer\NumberTransformer"
