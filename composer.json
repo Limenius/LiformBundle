@@ -13,7 +13,6 @@
         "psr-4": { "Limenius\\LiformBundle\\": "" }
     },
     "require": {
-        "limenius/liform": "^0.12.0"
-    },
-    "minimum-stability": "stable"
+        "limenius/liform": "^0.13.0"
+    }
 }
