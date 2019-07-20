@@ -15,6 +15,7 @@ use Limenius\Liform\Transformer\TransformerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Nacho Martín <nacho@limenius.com>
@@ -61,7 +62,7 @@ class TransformerCompilerPass implements CompilerPassInterface
                     $widget = $attribute['widget'];
                 }
 
-                $resolver->addMethodCall('setTransformer', [$attribute['form_type'], $transformer, $widget]);
+                $resolver->addMethodCall('setTransformer', [$attribute['form_type'], new Reference($id), $widget]);
             }
         }
     }
