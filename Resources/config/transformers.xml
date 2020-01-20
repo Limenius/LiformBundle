@@ -43,8 +43,6 @@
             <tag name="liform.transformer" form_type="time" widget="time"/>
             <tag name="liform.transformer" form_type="percent" widget="percent"/>
             <tag name="liform.transformer" form_type="email" widget="email"/>
-            <tag name="liform.transformer" form_type="date" widget="date"/>
-            <tag name="liform.transformer" form_type="datetime" widget="datetime"/>
         </service>
 
         <service id="liform.transformer.number" class="Limenius\Liform\Transformer\NumberTransformer"
