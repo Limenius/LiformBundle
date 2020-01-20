@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0ec7e651b6ab57d286348935b5bf857",
+    "content-hash": "5cdcdddb4ee3df0f75a4252904d58ddb",
     "packages": [
         {
             "name": "limenius/liform",
-            "version": "v0.13.0",
+            "version": "v0.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Limenius/Liform.git",
-                "reference": "b46ba76cc7703b9d9989ff9f8ca4437cfc8f6c6c"
+                "reference": "fee4211c3101284c7ca1ff4fb7c509ea3e8918ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Limenius/Liform/zipball/b46ba76cc7703b9d9989ff9f8ca4437cfc8f6c6c",
-                "reference": "b46ba76cc7703b9d9989ff9f8ca4437cfc8f6c6c",
+                "url": "https://api.github.com/repos/Limenius/Liform/zipball/fee4211c3101284c7ca1ff4fb7c509ea3e8918ce",
+                "reference": "fee4211c3101284c7ca1ff4fb7c509ea3e8918ce",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 }
             ],
             "description": "Library to transform Symfony Forms into Json Schema",
-            "time": "2018-12-06T17:18:45+00:00"
+            "time": "2020-01-20T18:58:23+00:00"
         },
         {
             "name": "psr/container",
