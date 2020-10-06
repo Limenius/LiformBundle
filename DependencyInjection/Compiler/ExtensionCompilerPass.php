@@ -14,7 +14,6 @@ namespace Limenius\LiformBundle\DependencyInjection\Compiler;
 use Limenius\Liform\Transformer\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * @author Nacho Martín <nacho@limenius.com>

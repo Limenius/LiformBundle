@@ -14,7 +14,7 @@ namespace Limenius\LiformBundle\DependencyInjection\Compiler;
 use Limenius\Liform\Transformer\TransformerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Nacho Martín <nacho@limenius.com>
@@ -28,11 +28,11 @@ class TransformerCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('liform.resolver')) {
+        if (!$container->hasDefinition('Limenius\Liform\Resolver')) {
             return;
         }
 
-        $resolver = $container->getDefinition('liform.resolver');
+        $resolver = $container->getDefinition('Limenius\Liform\Resolver');
 
         foreach ($container->findTaggedServiceIds(self::TRANSFORMER_TAG) as $id => $attributes) {
             $transformer = $container->getDefinition($id);
@@ -61,7 +61,7 @@ class TransformerCompilerPass implements CompilerPassInterface
                     $widget = $attribute['widget'];
                 }
 
-                $resolver->addMethodCall('setTransformer', [$attribute['form_type'], $transformer, $widget]);
+                $resolver->addMethodCall('setTransformer', [$attribute['form_type'], new Reference($id), $widget]);
             }
         }
     }

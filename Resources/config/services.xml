@@ -5,24 +5,28 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="liform.add_schema_extension" class="Limenius\Liform\Form\Extension\AddLiformExtension" public="true">
+        <service id="Limenius\Liform\Form\Extension\AddLiformExtension" public="true">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
+        <service id="liform.add_schema_extension" alias="Limenius\Liform\Form\Extension\AddLiformExtension" public="true"/>
 
         <!-- Normalizes FormInterface when using the symfony serializer -->
-        <service id="liform.serializer.form_error_normalizer" class="Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer">
+        <service id="Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer" public="true">
             <argument type="service" id="translator" />
             <tag name="serializer.normalizer" priority="-10" />
         </service>
+        <service id="liform.serializer.form_error_normalizer" alias="Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer" public="true"/>
 
-        <service id="liform.serializer.initial_values_normalizer" class="Limenius\Liform\Serializer\Normalizer\InitialValuesNormalizer">
+        <service id="Limenius\Liform\Serializer\Normalizer\InitialValuesNormalizer" public="true">
             <tag name="serializer.normalizer" priority="-10" />
         </service>
+        <service id="liform.serializer.initial_values_normalizer" alias="Limenius\Liform\Serializer\Normalizer\InitialValuesNormalizer" public="false"/>
 
-        <service id="liform.resolver" class="Limenius\Liform\Resolver" public="true"/>
+        <service id="Limenius\Liform\Resolver" public="true"/>
+        <service id="liform.resolver" alias="Limenius\Liform\Resolver" public="true"/>
 
-        <service id="Limenius\Liform\Liform" class="Limenius\Liform\Liform">
-            <argument type="service" id="liform.resolver" />
+        <service id="Limenius\Liform\Liform" public="true">
+            <argument type="service" id="Limenius\Liform\Resolver" />
         </service>
         <service id="liform" alias="Limenius\Liform\Liform" public="true"/>
 

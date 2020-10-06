@@ -17,13 +17,13 @@
 
         <service id="liform.transformer.array" class="Limenius\Liform\Transformer\ArrayTransformer"
                  parent="Limenius\Liform\Transformer\AbstractTransformer">
-            <argument type="service" id="liform.resolver" />
+            <argument type="service" id="Limenius\Liform\Resolver" />
             <tag name="liform.transformer" form_type="collection"/>
         </service>
 
         <service id="liform.transformer.compound" class="Limenius\Liform\Transformer\CompoundTransformer"
                  parent="Limenius\Liform\Transformer\AbstractTransformer">
-            <argument type="service" id="liform.resolver" />
+            <argument type="service" id="Limenius\Liform\Resolver" />
             <tag name="liform.transformer" form_type="compound"/>
         </service>
 
