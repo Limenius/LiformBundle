@@ -1,34 +1,37 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "146d19aaf261ecc528ef4cfa1103c285",
+    "content-hash": "a7d0d145820f0972e006f88443965482",
     "packages": [
         {
             "name": "limenius/liform",
-            "version": "v0.15.0",
+            "version": "dev-fix-ambiguous-class-warnings",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Limenius/Liform.git",
-                "reference": "6df32321a4ddbdd19a51236a446796fa50c2a532"
+                "url": "https://github.com/kram-soft/Liform.git",
+                "reference": "5d039c9f96714bd8896dc75a0a4f6ed806bc3d98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Limenius/Liform/zipball/6df32321a4ddbdd19a51236a446796fa50c2a532",
-                "reference": "6df32321a4ddbdd19a51236a446796fa50c2a532",
+                "url": "https://api.github.com/repos/kram-soft/Liform/zipball/5d039c9f96714bd8896dc75a0a4f6ed806bc3d98",
+                "reference": "5d039c9f96714bd8896dc75a0a4f6ed806bc3d98",
                 "shasum": ""
             },
             "require": {
-                "symfony/form": "~2.8|~3.0|^4.0",
-                "symfony/serializer": "~2.8|~3.0|^4.0",
-                "symfony/translation": "~2.3|~3.0|^4.0"
+                "php": "^7.2.5",
+                "symfony/form": "^4.4|^5.0",
+                "symfony/serializer": "^4.4|^5.0",
+                "symfony/service-contracts": "^1.1.1|^2.0",
+                "symfony/translation": "^4.4|^5.0"
             },
             "require-dev": {
-                "escapestudios/symfony2-coding-standard": "^2.9",
-                "squizlabs/php_codesniffer": "^2.5",
-                "wimg/php-compatibility": "^7.0"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
+                "escapestudios/symfony2-coding-standard": "^3.0",
+                "phpcompatibility/php-compatibility": "^9.3",
+                "phpunit/phpunit": "^8.0"
             },
             "type": "library",
             "autoload": {
@@ -36,7 +39,19 @@
                     "Limenius\\Liform\\": "src/Limenius/Liform"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Limenius\\Liform\\Tests\\": "tests/Limenius/Liform/Tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "cs": [
+                    "phpcs"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -47,7 +62,10 @@
                 }
             ],
             "description": "Library to transform Symfony Forms into Json Schema",
-            "time": "2020-01-25T09:27:21+00:00"
+            "support": {
+                "source": "https://github.com/kram-soft/Liform/tree/fix-ambiguous-class-warnings"
+            },
+            "time": "2021-09-01T07:33:52+00:00"
         },
         {
             "name": "psr/container",
@@ -1015,9 +1033,12 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "limenius/liform": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
 }
