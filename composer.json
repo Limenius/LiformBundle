@@ -9,13 +9,19 @@
       "email": "nacho@limenius.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/kram-soft/Liform"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Limenius\\LiformBundle\\": ""
     }
   },
   "require": {
-    "limenius/liform": "^0.17.0"
+    "limenius/liform": "dev-fix-ambiguous-class-warnings"
   },
   "minimum-stability": "stable"
 }
