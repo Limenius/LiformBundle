@@ -22,6 +22,5 @@
   },
   "require": {
     "limenius/liform": "dev-fix-ambiguous-class-warnings"
-  },
-  "minimum-stability": "stable"
+  }
 }
