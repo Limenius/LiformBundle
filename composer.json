@@ -15,7 +15,7 @@
     }
   },
   "require": {
-    "limenius/liform": "^0.17.0"
+    "limenius/liform": "^0.17"
   },
   "minimum-stability": "stable"
 }
