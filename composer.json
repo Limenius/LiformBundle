@@ -15,10 +15,10 @@
     }
   },
   "require": {
-    "limenius/liform": "@dev",
+    "limenius/liform": "^0.19",
     "symfony/dependency-injection": "^5.4|^6.0",
     "symfony/config": "^5.4|^6.0",
     "symfony/http-kernel": "^5.4|^6.0"
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }
