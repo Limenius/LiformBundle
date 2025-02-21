@@ -15,9 +15,10 @@
             <tag name="liform.transformer" form_type="integer"/>
         </service>
 
-        <service id="liform.transformer.array" class="Limenius\Liform\Transformer\ArrayTransformer"
-                 parent="Limenius\Liform\Transformer\AbstractTransformer">
+        <service id="liform.transformer.array" class="Limenius\Liform\Transformer\ArrayTransformer">
+            <argument type="service" id="translator" />
             <argument type="service" id="Limenius\Liform\Resolver" />
+            <argument type="service" id="liform.guesser.validator" />
             <tag name="liform.transformer" form_type="collection"/>
         </service>
 
