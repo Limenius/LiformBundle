@@ -1,0 +1,52 @@
+services:
+    Limenius\Liform\Form\Extension\AddLiformExtension:
+        public: true
+        tags:
+            - { name: 'form.type_extension', extended_type: 'Symfony\Component\Form\Extension\Core\Type\FormType' }
+
+    liform.add_schema_extension:
+        alias: 'Limenius\Liform\Form\Extension\AddLiformExtension'
+        public: true
+
+    # Normalizes FormInterface when using the symfony serializer
+    Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer:
+        public: true
+        arguments:
+            - '@translator'
+        tags:
+            - { name: 'serializer.normalizer', priority: -10 }
+
+    liform.serializer.form_error_normalizer:
+        alias: 'Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer'
+        public: true
+
+    Limenius\Liform\Serializer\Normalizer\InitialValuesNormalizer:
+        public: true
+        tags:
+            - { name: 'serializer.normalizer', priority: -10 }
+
+    liform.serializer.initial_values_normalizer:
+        alias: 'Limenius\Liform\Serializer\Normalizer\InitialValuesNormalizer'
+        public: false
+
+    Limenius\Liform\Resolver:
+        public: true
+
+    liform.resolver:
+        alias: 'Limenius\Liform\Resolver'
+        public: true
+
+    Limenius\Liform\Liform:
+        public: true
+        arguments:
+            - '@Limenius\Liform\Resolver'
+
+    liform:
+        alias: 'Limenius\Liform\Liform'
+        public: true
+
+    liform.guesser.validator:
+        class: 'Limenius\Liform\Guesser\ValidatorGuesser'
+        public: true
+        arguments:
+            - '@validator.mapping.class_metadata_factory'
