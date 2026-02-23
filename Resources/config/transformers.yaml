@@ -1,0 +1,62 @@
+services:
+    Limenius\Liform\Transformer\AbstractTransformer:
+        abstract: true
+        arguments:
+            - '@translator'
+            - '@liform.guesser.validator'
+
+    liform.transformer.integer:
+        class: 'Limenius\Liform\Transformer\IntegerTransformer'
+        parent: 'Limenius\Liform\Transformer\AbstractTransformer'
+        tags:
+            - { name: 'liform.transformer', form_type: 'integer' }
+
+    liform.transformer.array:
+        class: 'Limenius\Liform\Transformer\ArrayTransformer'
+        arguments:
+            - '@translator'
+            - '@Limenius\Liform\Resolver'
+            - '@liform.guesser.validator'
+        tags:
+            - { name: 'liform.transformer', form_type: 'collection' }
+
+    liform.transformer.compound:
+        class: 'Limenius\Liform\Transformer\CompoundTransformer'
+        arguments:
+            - '@translator'
+            - '@Limenius\Liform\Resolver'
+            - '@liform.guesser.validator'
+        tags:
+            - { name: 'liform.transformer', form_type: 'compound' }
+
+    liform.transformer.choice:
+        class: 'Limenius\Liform\Transformer\ChoiceTransformer'
+        parent: 'Limenius\Liform\Transformer\AbstractTransformer'
+        tags:
+            - { name: 'liform.transformer', form_type: 'choice' }
+
+    liform.transformer.string:
+        class: 'Limenius\Liform\Transformer\StringTransformer'
+        parent: 'Limenius\Liform\Transformer\AbstractTransformer'
+        tags:
+            - { name: 'liform.transformer', form_type: 'text' }
+            - { name: 'liform.transformer', form_type: 'url', widget: 'url' }
+            - { name: 'liform.transformer', form_type: 'search', widget: 'search' }
+            - { name: 'liform.transformer', form_type: 'money', widget: 'money' }
+            - { name: 'liform.transformer', form_type: 'password', widget: 'password' }
+            - { name: 'liform.transformer', form_type: 'textarea', widget: 'textarea' }
+            - { name: 'liform.transformer', form_type: 'time', widget: 'time' }
+            - { name: 'liform.transformer', form_type: 'percent', widget: 'percent' }
+            - { name: 'liform.transformer', form_type: 'email', widget: 'email' }
+
+    liform.transformer.number:
+        class: 'Limenius\Liform\Transformer\NumberTransformer'
+        parent: 'Limenius\Liform\Transformer\AbstractTransformer'
+        tags:
+            - { name: 'liform.transformer', form_type: 'number' }
+
+    liform.transformer.boolean:
+        class: 'Limenius\Liform\Transformer\BooleanTransformer'
+        parent: 'Limenius\Liform\Transformer\AbstractTransformer'
+        tags:
+            - { name: 'liform.transformer', form_type: 'checkbox', widget: 'checkbox' }
